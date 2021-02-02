@@ -1,0 +1,94 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Ubuntu&display=swap');
+
+/* Variables */
+:root {
+  --primary-color: #f3eee0;
+  --secondary-color: #f1bbba;
+  --secondary-color: #eb9f9f;
+  --text-color: #8d8479;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 1rem = 10 px */
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+}
+
+button:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+li {
+  list-style: none;
+}
+
+/* Navigation */
+.navigation {
+  background-color: var(--primary-color);
+  width: 100%;
+  position: relative;
+  font-size: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navigation::after {
+  content: '';
+  position: absolute;
+  top: 99%;
+  left: 0;
+  height: 8rem;
+  width: 100%;
+  background-image: url(./img/waves.svg);
+  background-size: contain;
+  background-repeat: repeat-x;
+  z-index: -1;
+}
+
+.navigation__header {
+  font-family: 'Lobster', 'sans-serif';
+  margin-top: 2rem;
+  letter-spacing: 5px;
+  flex: 1;
+  text-align: center;
+}
+
+.navigation__list {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: flex-end;
+}
+
+.navigation__list-item {
+  margin-right: 4rem;
+}
