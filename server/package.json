@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
+    "debug": "ndb server.js",
     "client": "cd .. && npm start --prefix client",
     "clientinstall": "cd .. && npm install --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -26,6 +27,7 @@
     "mongoose": "^5.11.14"
   },
   "devDependencies": {
+    "ndb": "^1.1.5",
     "nodemon": "^2.0.7"
   }
 }

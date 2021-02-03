@@ -5,7 +5,7 @@
 :root {
   --primary-color: #f3eee0;
   --secondary-color: #f1bbba;
-  --secondary-color: #eb9f9f;
+  --secondary-color-2: #eb9f9f;
   --text-color: #8d8479;
 }
 
@@ -91,4 +91,29 @@ li {
 
 .navigation__list-item {
   margin-right: 4rem;
+}
+
+/* Sign Up */
+.signup {
+  background-color: lightcoral;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup__group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+.footer__img {
+  width: 3rem;
 }
