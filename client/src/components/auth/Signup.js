@@ -21,17 +21,22 @@ const Signup = () => {
   return (
     <div className="signup">
       <div className="signup__header">
-        <h2>Sign Up</h2>
-        <h4>
-          Already a Member?
-          <Link to="/login">Log In</Link>
+        <h2 className="signup__header-heading heading-1">Sign Up</h2>
+        <h4 className="signup__header-heading heading-2">
+          Already a Member?{' '}
+          <Link to="/login" className="signup__header-link">
+            Log In
+          </Link>
         </h4>
       </div>
 
       <form>
         <div className="signup__group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className="signup__label">
+            Name
+          </label>
           <input
+            className="signup__input"
             type="text"
             name="name"
             value={name}
@@ -41,8 +46,11 @@ const Signup = () => {
         </div>
 
         <div className="signup__group">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email" className="signup__label">
+            Email Address
+          </label>
           <input
+            className="signup__input"
             type="email"
             name="email"
             value={email}
@@ -52,8 +60,11 @@ const Signup = () => {
         </div>
 
         <div className="signup__group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="signup__label">
+            Password
+          </label>
           <input
+            className="signup__input"
             type="password"
             name="password"
             value={password}
@@ -64,8 +75,11 @@ const Signup = () => {
         </div>
 
         <div className="signup__group">
-          <label htmlFor="password2">Confirm Password</label>
+          <label htmlFor="password2" className="signup__label">
+            Confirm Password
+          </label>
           <input
+            className="signup__input"
             type="password"
             name="password2"
             value={password2}
@@ -75,7 +89,7 @@ const Signup = () => {
           />
         </div>
 
-        <input type="submit" value="Sign Up" className="signup__button" />
+        <input type="submit" value="Register" className="signup__button" />
       </form>
     </div>
   );
