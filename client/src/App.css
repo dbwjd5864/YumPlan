@@ -46,7 +46,7 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 button,
@@ -84,20 +84,19 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   width: 60rem;
 }
 
 .home__door {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
   position: relative;
+  text-align: center;
+  margin-top: 4rem;
 }
 
 .home__door-heading {
   position: absolute;
-  top: 38%;
+  top: 35%;
   left: 39%;
   background-color: var(--text-color);
   border-radius: 10px;
@@ -121,7 +120,7 @@ li {
 }
 
 .home__door-img {
-  width: 100%;
+  width: 90%;
 }
 
 /* Navigation */
@@ -166,53 +165,68 @@ li {
   margin-right: 4rem;
 }
 
-/* Sign Up */
-.signup {
+/* Sign Up && Log In */
+.form-container {
   margin: 10rem 0;
   padding: 3rem;
   width: 50rem;
 }
 
-.signup__header {
+.signup__header,
+.login__header,
+.login__direction {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1.8rem;
 }
 
-.signup__header-heading {
+.signup__header-heading,
+.login__header-heading {
   margin: 1rem 0;
 }
 
-.signup__header-link {
+.signup__header-link,
+.login__header-link {
   color: var(--text-color-highlight);
   border-bottom: groove;
   margin-left: 1rem;
   text-transform: uppercase;
 }
 
-.signup__group {
+.signup__group,
+.login__group {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
 }
 
-.signup__label {
+.signup__label,
+.login__label {
   font-size: 1.9rem;
   margin-bottom: 0.1rem;
 }
 
-.signup__input {
+.signup__input,
+.login__input {
   border: 3px solid var(--text-color-highlight);
   height: 3.5rem;
   font-size: 1.9rem;
+  padding: 1.5rem 1rem;
 }
 
-.signup__button {
+.signup__button,
+.login__button {
   width: 100%;
   font-size: 2rem;
   padding: 0.8rem;
   color: white;
   background-color: var(--text-color);
+  margin-top: 1rem;
+}
+
+.login__direction {
+  margin-top: 2.3rem;
 }
 
 /* Footer */
@@ -220,6 +234,8 @@ li {
   background-color: var(--primary-color);
   height: 5rem;
   border-top: 4px solid var(--text-color-highlight);
+  margin-top: -6px;
+  z-index: 1;
 }
 
 .footer__img {

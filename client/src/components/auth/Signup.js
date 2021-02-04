@@ -18,8 +18,12 @@ const Signup = () => {
     });
   };
 
+  const submitSignUp = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div className="signup">
+    <div className="signup form-container">
       <div className="signup__header">
         <h2 className="signup__header-heading heading-1">Sign Up</h2>
         <h4 className="signup__header-heading heading-2">
@@ -30,7 +34,7 @@ const Signup = () => {
         </h4>
       </div>
 
-      <form>
+      <form onSubmit={submitSignUp}>
         <div className="signup__group">
           <label htmlFor="name" className="signup__label">
             Name

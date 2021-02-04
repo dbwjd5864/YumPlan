@@ -6,6 +6,18 @@ const createSendToken = (user, statusCode, req, res) => {
   const token = jwt.sign({ user: user._id }, process.env.TOKEN_SECRET, {
     expiresIn: 3600,
   });
+  const cookieOption = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
+
+  if (process.env.NODE_ENV === 'production') {
+    cookieOption.secure = true;
+  }
+
+  res.cookie('jwt', token, cookieOption);
 
   // Remove password from output
   user.password = undefined;
@@ -64,7 +76,7 @@ exports.login = async (req, res) => {
 
   try {
     //Check if the email exists
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password');
     if (!user || !(await user.correctPassword(password, user.password))) {
       return res.status(401).json({
         msg: 'Incorrect email or password',

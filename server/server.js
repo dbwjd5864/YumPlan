@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const helmet = require('helmet');
 
 const connection = require('./db/connection.js');
 
@@ -9,6 +10,7 @@ const recipeRouter = require('./routes/recipeRoutes');
 const userRouter = require('./routes/userRoutes');
 
 //Middleware
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 app.use(cors());
