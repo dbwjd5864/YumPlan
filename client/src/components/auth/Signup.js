@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../actions/userActions';
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -20,6 +24,8 @@ const Signup = () => {
 
   const submitSignUp = (e) => {
     e.preventDefault();
+
+    dispatch(signup(user));
   };
 
   return (
@@ -45,7 +51,7 @@ const Signup = () => {
             name="name"
             value={name}
             onChange={changeForSignup}
-            required
+            // required
           />
         </div>
 
@@ -59,7 +65,7 @@ const Signup = () => {
             name="email"
             value={email}
             onChange={changeForSignup}
-            required
+            // required
           />
         </div>
 
@@ -73,7 +79,7 @@ const Signup = () => {
             name="password"
             value={password}
             onChange={changeForSignup}
-            required
+            // required
             minLength="6"
           />
         </div>
@@ -88,7 +94,7 @@ const Signup = () => {
             name="password2"
             value={password2}
             onChange={changeForSignup}
-            required
+            // required
             minLength="6"
           />
         </div>

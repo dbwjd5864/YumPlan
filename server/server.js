@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 
 const connection = require('./db/connection.js');
 
@@ -14,6 +15,7 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 app.use(cors());
+app.use(cookieParser());
 
 //Connect to DB and server
 connection.once('open', () => {

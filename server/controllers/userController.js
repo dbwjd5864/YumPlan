@@ -25,9 +25,7 @@ const createSendToken = (user, statusCode, req, res) => {
   res.status(statusCode).json({
     status: 'success',
     token,
-    data: {
-      user,
-    },
+    user,
   });
 };
 
@@ -90,4 +88,15 @@ exports.login = async (req, res) => {
       err,
     });
   }
+};
+
+// @route     GET api/v1/users/logout
+// @desc      log out and clear cookie
+// @access    Public
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
 };

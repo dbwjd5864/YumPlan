@@ -1,5 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+// import { loadUser } from './actions/userActions';
+
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './components/pages/Home';
@@ -10,6 +14,12 @@ import Login from './components/auth/Login';
 import './App.css';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(loadUser());
+  // }, []);
+
   return (
     <Router>
       <Fragment>
