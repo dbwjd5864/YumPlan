@@ -33,7 +33,7 @@ const createSendToken = (user, statusCode, req, res) => {
 // @desc      Register a user
 // @access    Public
 exports.signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, password2 } = req.body;
 
   try {
     //Check if the user/email is already in the database

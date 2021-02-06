@@ -1,5 +1,13 @@
 const { check, validationResult } = require('express-validator');
 
+const checkConfirmPassword = (value, { req }) => {
+  if (value !== req.body.password) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 exports.signupValidators = [
   //Name validator
   check('name')
@@ -29,6 +37,15 @@ exports.signupValidators = [
     .withMessage('Please enter your password')
     .isLength({ min: 6 })
     .withMessage('Please enter a password with 6 or more characters'),
+
+  //Password2 validator
+  check('password2')
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage('Please enter your confirm password')
+    .custom(checkConfirmPassword)
+    .withMessage('Passwords do not match'),
 
   (req, res, next) => {
     const errors = validationResult(req);

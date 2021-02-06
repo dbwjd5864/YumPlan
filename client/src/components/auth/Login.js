@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions/userActions';
+import { clearErrors } from '../../actions/errorActions';
 
 const Login = () => {
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
+  const error = useSelector((state) => state.errors);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (error.id === 'LOGIN_FAIL') {
+      setErrMsg(error.msg.errors);
+    } else {
+      setErrMsg(null);
+    }
+
+    if (isAuthenticated) {
+      history.push('/recipes');
+    }
+  }, [error, isAuthenticated]);
+
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
+
+  const [errMsg, setErrMsg] = useState(null);
 
   const { email, password } = user;
 
@@ -16,13 +38,37 @@ const Login = () => {
     });
   };
 
+  const submitForLogIn = (e) => {
+    e.preventDefault();
+    if (errMsg !== null) {
+      dispatch(clearErrors());
+    }
+
+    dispatch(
+      login({
+        email,
+        password,
+      })
+    );
+  };
+
+  const mapError = (err, type) => {
+    if (err.param === type) {
+      return (
+        <p key={err.id} className="error">
+          {err.msg}
+        </p>
+      );
+    }
+  };
+
   return (
     <div className="login form-container">
       <div className="login__header">
         <h2 className="login__header-heading heading-1">Log In</h2>
       </div>
 
-      <form>
+      <form onSubmit={submitForLogIn}>
         <div className="login__group">
           <label htmlFor="email" className="login__label">
             Email Address
@@ -33,8 +79,14 @@ const Login = () => {
             name="email"
             value={email}
             onChange={changeForLogIn}
-            required
           />
+          <div className="errorWrapper">
+            {errMsg
+              ? errMsg.map((err) => {
+                  return mapError(err, 'email');
+                })
+              : null}
+          </div>
         </div>
 
         <div className="login__group">
@@ -47,9 +99,14 @@ const Login = () => {
             name="password"
             value={password}
             onChange={changeForLogIn}
-            required
-            minLength="6"
           />
+          <div className="errorWrapper">
+            {errMsg
+              ? errMsg.map((err) => {
+                  return mapError(err, 'password');
+                })
+              : null}
+          </div>
         </div>
 
         <input type="submit" value="Log In" className="login__button" />

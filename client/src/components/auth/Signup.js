@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../actions/userActions';
+import { clearErrors } from '../../actions/errorActions';
 
 const Signup = () => {
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
+  const error = useSelector((state) => state.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (error.id === 'REGISTER_FAIL') {
+      setErrMsg(error.msg.errors);
+    } else {
+      setErrMsg(null);
+    }
+
+    if (isAuthenticated) {
+      history.push('/recipes');
+    }
+  }, [error, isAuthenticated]);
 
   const [user, setUser] = useState({
     name: '',
@@ -12,6 +28,8 @@ const Signup = () => {
     password: '',
     password2: '',
   });
+
+  const [errMsg, setErrMsg] = useState(null);
 
   const { name, email, password, password2 } = user;
 
@@ -24,8 +42,28 @@ const Signup = () => {
 
   const submitSignUp = (e) => {
     e.preventDefault();
+    if (errMsg !== null) {
+      dispatch(clearErrors());
+    }
 
-    dispatch(signup(user));
+    dispatch(
+      signup({
+        name,
+        email,
+        password,
+        password2,
+      })
+    );
+  };
+
+  const mapError = (err, type) => {
+    if (err.param === type) {
+      return (
+        <p key={err.id} className="error">
+          {err.msg}
+        </p>
+      );
+    }
   };
 
   return (
@@ -51,8 +89,14 @@ const Signup = () => {
             name="name"
             value={name}
             onChange={changeForSignup}
-            // required
           />
+          <div className="errorWrapper">
+            {errMsg
+              ? errMsg.map((err) => {
+                  return mapError(err, 'name');
+                })
+              : null}
+          </div>
         </div>
 
         <div className="signup__group">
@@ -65,8 +109,14 @@ const Signup = () => {
             name="email"
             value={email}
             onChange={changeForSignup}
-            // required
           />
+          <div className="errorWrapper">
+            {errMsg
+              ? errMsg.map((err) => {
+                  return mapError(err, 'email');
+                })
+              : null}
+          </div>
         </div>
 
         <div className="signup__group">
@@ -79,9 +129,14 @@ const Signup = () => {
             name="password"
             value={password}
             onChange={changeForSignup}
-            // required
-            minLength="6"
           />
+          <div className="errorWrapper">
+            {errMsg
+              ? errMsg.map((err) => {
+                  return mapError(err, 'password');
+                })
+              : null}
+          </div>
         </div>
 
         <div className="signup__group">
@@ -94,9 +149,14 @@ const Signup = () => {
             name="password2"
             value={password2}
             onChange={changeForSignup}
-            // required
-            minLength="6"
           />
+          <div className="errorWrapper">
+            {errMsg
+              ? errMsg.map((err) => {
+                  return mapError(err, 'password2');
+                })
+              : null}
+          </div>
         </div>
 
         <input type="submit" value="Register" className="signup__button" />

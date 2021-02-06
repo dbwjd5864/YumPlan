@@ -241,3 +241,21 @@ li {
 .footer__img {
   width: 3rem;
 }
+
+/* Error */
+.errorWrapper {
+  margin-top: 0.8rem;
+  background-color: var(--secondary-color);
+  border-radius: 0.3rem;
+}
+
+.error {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.9rem;
+}
+
+/* User */
+/* .user__name {
+  text-transform: uppercase;
+} */
