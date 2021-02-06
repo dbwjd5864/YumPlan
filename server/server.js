@@ -6,18 +6,18 @@ const cookieParser = require('cookie-parser');
 
 const connection = require('./db/connection.js');
 
-//Import Routes
-const recipeRouter = require('./routes/recipeRoutes');
+// Import Routes
+const mealRouter = require('./routes/mealRoutes');
 const userRouter = require('./routes/userRoutes');
 
-//Middleware
+// Middleware
 app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 app.use(cors());
 app.use(cookieParser());
 
-//Connect to DB and server
+// Connect to DB and server
 connection.once('open', () => {
   console.log('connected to database');
 
@@ -28,4 +28,4 @@ connection.once('open', () => {
 
 // Routes
 app.use('/api/v1/user', userRouter);
-app.use('/api/v1/recipe', recipeRouter);
+app.use('/api/v1/meal', mealRouter);
