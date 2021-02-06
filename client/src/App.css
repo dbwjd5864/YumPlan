@@ -1,0 +1,261 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Ubuntu&display=swap');
+
+/* Variables */
+:root {
+  --primary-color: #f3eee0;
+  --secondary-color: #f1bbba;
+  --secondary-color-2: #eb9f9f;
+
+  --text-color: #8d8479;
+  --text-color-highlight: #d9cbb9;
+
+  --grey: #999;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 1rem = 10 px */
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+button,
+input[type='submit'],
+input {
+  font-family: inherit;
+  cursor: pointer;
+  border: 0;
+}
+
+button:focus,
+input:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+li {
+  list-style: none;
+}
+
+.heading-1 {
+  font-size: 3.5rem;
+}
+
+.heading-2 {
+  font-size: 2.5rem;
+}
+
+/* Home */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 60rem;
+}
+
+.home__door {
+  position: relative;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.home__door-heading {
+  position: absolute;
+  top: 35%;
+  left: 39%;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+.home__door-heading::before {
+  content: '\\';
+  position: absolute;
+  top: -20px;
+  color: var(--text-color);
+}
+
+.home__door-heading::after {
+  content: '/';
+  position: absolute;
+  top: -21px;
+  right: 23px;
+  color: var(--text-color);
+}
+
+.home__door-img {
+  width: 90%;
+}
+
+/* Navigation */
+.navigation {
+  background-color: var(--primary-color);
+  width: 100%;
+  position: relative;
+  font-size: 3.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navigation::after {
+  content: '';
+  position: absolute;
+  top: 99%;
+  left: 0;
+  height: 8rem;
+  width: 100%;
+  background-image: url(./img/waves.svg);
+  background-size: contain;
+  background-repeat: repeat-x;
+  z-index: -1;
+}
+
+.navigation__header {
+  font-family: 'Lobster', 'sans-serif';
+  margin-top: 2rem;
+  letter-spacing: 5px;
+  flex: 1;
+  text-align: center;
+}
+
+.navigation__list {
+  display: flex;
+  flex: 0 0 100%;
+  justify-content: flex-end;
+}
+
+.navigation__list-item {
+  margin-right: 4rem;
+}
+
+/* Sign Up && Log In */
+.form-container {
+  margin: 10rem 0;
+  padding: 3rem;
+  width: 50rem;
+}
+
+.signup__header,
+.login__header,
+.login__direction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.8rem;
+}
+
+.signup__header-heading,
+.login__header-heading {
+  margin: 1rem 0;
+}
+
+.signup__header-link,
+.login__header-link {
+  color: var(--text-color-highlight);
+  border-bottom: groove;
+  margin-left: 1rem;
+  text-transform: uppercase;
+}
+
+.signup__group,
+.login__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.signup__label,
+.login__label {
+  font-size: 1.9rem;
+  margin-bottom: 0.1rem;
+}
+
+.signup__input,
+.login__input {
+  border: 3px solid var(--text-color-highlight);
+  height: 3.5rem;
+  font-size: 1.9rem;
+  padding: 1.5rem 1rem;
+}
+
+.signup__button,
+.login__button {
+  width: 100%;
+  font-size: 2rem;
+  padding: 0.8rem;
+  color: white;
+  background-color: var(--text-color);
+  margin-top: 1rem;
+}
+
+.login__direction {
+  margin-top: 2.3rem;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary-color);
+  height: 5rem;
+  border-top: 4px solid var(--text-color-highlight);
+  margin-top: -6px;
+  z-index: 1;
+}
+
+.footer__img {
+  width: 3rem;
+}
+
+/* Error */
+.errorWrapper {
+  margin-top: 0.8rem;
+  background-color: var(--secondary-color);
+  border-radius: 0.3rem;
+}
+
+.error {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.9rem;
+}
+
+/* User */
+/* .user__name {
+  text-transform: uppercase;
+} */
