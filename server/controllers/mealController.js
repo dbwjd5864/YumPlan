@@ -54,7 +54,7 @@ exports.createMealPlan = async (req, res) => {
 
     res.status(201).json({
       status: 'success',
-      plan: newPlan,
+      mealPlan: newPlan,
     });
   } catch (err) {
     res.status(500).json({
@@ -67,9 +67,77 @@ exports.createMealPlan = async (req, res) => {
 // @route     PUT api/v1/meal/planner/:planId
 // @desc      Update meal plan
 // @access    Private
-exports.updateMealPlan = async (req, res) => {};
+exports.updateMealPlan = async (req, res) => {
+  const { name, ingredients, type, tags, photo } = req.body;
+
+  const mealFields = {};
+  if (name) mealFields.name = name;
+  if (ingredients) mealFields.ingredients = ingredients;
+  if (type) mealFields.type = type;
+  if (tags) mealFields.tags = tags;
+  if (photo) mealFields.photo = photo;
+
+  try {
+    const mealPlan = await Meal.findById(req.params.planId);
+
+    if (!mealPlan) {
+      return res.status(404).json({
+        msg: 'No Meal found with that ID',
+      });
+    }
+
+    if (mealPlan.user.id.toString() !== req.user.id) {
+      return res.status(404).json({
+        msg: 'Not authorized',
+      });
+    }
+
+    const updatedMealPlan = await Meal.findByIdAndUpdate(
+      req.params.planId,
+      { $set: mealFields },
+      { new: true }
+    );
+
+    res.status(200).json({
+      status: 'success',
+      mealPlan: updatedMealPlan,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
 
 // @route     DELETE api/v1/meal/planner/:planId
 // @desc      Delete meal plan
 // @access    Private
-exports.deleteMealPlan = async (req, res) => {};
+exports.deleteMealPlan = async (req, res) => {
+  try {
+    const mealPlan = await Meal.findById(req.params.planId);
+
+    if (!mealPlan) {
+      return res.status(404).json({
+        msg: 'No Meal found with that ID',
+      });
+    }
+
+    if (mealPlan.user.id.toString() !== req.user.id) {
+      return res.status(404).json({
+        msg: 'Not authorized',
+      });
+    }
+
+    await Meal.findByIdAndRemove(req.params.planId);
+
+    res.status(204).json({
+      status: 'success',
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};

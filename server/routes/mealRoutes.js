@@ -14,7 +14,7 @@ router
   .post(mealController.createMealPlan);
 router
   .route('/planner/:planId')
-  .put(mealController.updateMealPlan)
+  .patch(mealController.updateMealPlan)
   .delete(mealController.deleteMealPlan);
 
 module.exports = router;
