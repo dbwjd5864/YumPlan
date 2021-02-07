@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
-const {promisify} = require('util');
+const { promisify } = require('util');
 const User = require('../models/User');
 
-module.exports = function (req, res, next) {
-
+module.exports = async function (req, res, next) {
   let token;
   if (
     req.headers.authorization &&
@@ -23,13 +22,17 @@ module.exports = function (req, res, next) {
 
   try {
     //entrie payload
-    const decoded = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET);
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.TOKEN_SECRET
+    );
 
     const currentUser = await User.findbyId(decoded.user);
-    if(!currentUser){
-      res.status(401).json({ status: 'fail', msg: 'The user does no longer exist' });
+    if (!currentUser) {
+      res
+        .status(401)
+        .json({ status: 'fail', msg: 'The user does no longer exist' });
     }
-    
 
     req.user = currentUser;
 

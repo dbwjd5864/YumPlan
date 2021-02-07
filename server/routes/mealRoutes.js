@@ -11,8 +11,10 @@ router.use(auth);
 router
   .route('/planner')
   .get(mealController.getPlanner)
-  .post(mealController.uploadMealPlan)
-  .put('/:planId', mealController.updateMealPlan)
-  .delete('/:planId', mealController.deleteMealPlan);
+  .post(mealController.uploadMealPlan);
+router
+  .route('/planner/:planId')
+  .put(mealController.updateMealPlan)
+  .delete(mealController.deleteMealPlan);
 
 module.exports = router;

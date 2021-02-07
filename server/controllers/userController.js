@@ -29,7 +29,7 @@ const createSendToken = (user, statusCode, req, res) => {
   });
 };
 
-// @route     POST api/v1/users/signup
+// @route     POST api/v1/user/signup
 // @desc      Register a user
 // @access    Public
 exports.signup = async (req, res) => {
@@ -66,7 +66,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-// @route     POST api/v1/users/login
+// @route     POST api/v1/user/login
 // @desc      Auth user and get Token
 // @access    Public
 exports.login = async (req, res) => {
@@ -90,7 +90,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// @route     GET api/v1/users/logout
+// @route     GET api/v1/user/logout
 // @desc      log out and clear cookie
 // @access    Public
 exports.logout = (req, res) => {
