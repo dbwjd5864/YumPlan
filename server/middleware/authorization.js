@@ -3,8 +3,6 @@ const {promisify} = require('util');
 const User = require('../models/User');
 
 module.exports = function (req, res, next) {
-  //Get token from header
-  // const token = req.headers('x-auth-token');
 
   let token;
   if (
@@ -27,13 +25,13 @@ module.exports = function (req, res, next) {
     //entrie payload
     const decoded = await promisify(jwt.verify)(token, process.env.TOKEN_SECRET);
 
-    const checkUser = await User.findbyId(decoded.user);
-    if(!checkUser){
+    const currentUser = await User.findbyId(decoded.user);
+    if(!currentUser){
       res.status(401).json({ status: 'fail', msg: 'The user does no longer exist' });
     }
     
 
-    req.user = checkUser;
+    req.user = currentUser;
 
     next();
   } catch (err) {
