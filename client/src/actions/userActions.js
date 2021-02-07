@@ -30,3 +30,13 @@ export const login = (user) => async (dispatch) => {
     dispatch({ type: 'LOGIN_FAIL' });
   }
 };
+
+export const logout = () => async (dispatch) => {
+  try {
+    await api.logout();
+
+    dispatch({ type: 'LOGOUT' });
+  } catch (err) {
+    console.log(err);
+  }
+};

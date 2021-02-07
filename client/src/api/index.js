@@ -5,3 +5,5 @@ const userUrl = '/api/v1/user';
 export const signup = (newUser) => axios.post(`${userUrl}/signup`, newUser);
 
 export const login = (user) => axios.post(`${userUrl}/login`, user);
+
+export const logout = () => axios.get(`${userUrl}/logout`);

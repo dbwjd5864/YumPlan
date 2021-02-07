@@ -11,7 +11,7 @@ router.use(auth);
 router
   .route('/planner')
   .get(mealController.getPlanner)
-  .post(mealController.uploadMealPlan);
+  .post(mealController.createMealPlan);
 router
   .route('/planner/:planId')
   .put(mealController.updateMealPlan)

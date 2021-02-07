@@ -8,7 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
-import Recipes from './components/pages/Recipes';
+import Meal from './components/pages/Meal';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import './App.css';
@@ -27,7 +27,7 @@ const App = () => {
         <main className="container">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/recipes" component={Recipes} />
+            <Route exact path="/meal" component={Meal} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/about" component={About} />

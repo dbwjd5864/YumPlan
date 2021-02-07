@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const MealSchema = new mongoose.Schema({
   name: {
@@ -19,7 +19,12 @@ const MealSchema = new mongoose.Schema({
     enum: ['public', 'private'],
     default: 'private',
   },
-  tags: [String],
+  tags: [
+    {
+      type: String,
+      default: '',
+    },
+  ],
   photo: {
     type: String,
     default: 'spoon.png',
@@ -32,6 +37,14 @@ const MealSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+MealSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'user',
+    select: 'name',
+  });
+  next();
 });
 
 module.exports = mongoose.model('Meal', MealSchema);

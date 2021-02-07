@@ -18,7 +18,7 @@ const Signup = () => {
     }
 
     if (isAuthenticated) {
-      history.push('/recipes');
+      history.push('/meal');
     }
   }, [error, isAuthenticated]);
 

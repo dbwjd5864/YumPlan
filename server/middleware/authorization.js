@@ -27,7 +27,7 @@ module.exports = async function (req, res, next) {
       process.env.TOKEN_SECRET
     );
 
-    const currentUser = await User.findbyId(decoded.user);
+    const currentUser = await User.findById(decoded.user);
     if (!currentUser) {
       res
         .status(401)

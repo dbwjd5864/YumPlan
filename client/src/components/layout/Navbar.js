@@ -1,9 +1,23 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { Fragment, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../actions/userActions';
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push('/');
+    }
+  }, [isAuthenticated]);
+
+  const onLogout = () => {
+    dispatch(logout());
+    // dispatch(clearPlanner());
+  };
 
   const guestLinks = (
     <Fragment>
@@ -24,7 +38,9 @@ const Navbar = () => {
           {user && user.name ? `Hello ${name}` : ''}
         </li>
         <li className="navigation__list-item">
-          <Link to="/logout">Logout</Link>
+          <a onClick={onLogout} href="#!">
+            Logout
+          </a>
         </li>
       </Fragment>
     );
