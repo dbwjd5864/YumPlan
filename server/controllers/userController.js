@@ -59,7 +59,6 @@ exports.signup = async (req, res) => {
 
     createSendToken(savedUser, 201, req, res);
   } catch (err) {
-    console.log(err.message);
     res.status(400).json({
       status: 'fail',
       err,
