@@ -5,7 +5,7 @@ import doorImg from '../../img/door.png';
 const Home = () => {
   return (
     <div className="home">
-      <h2 className="home__heading heading-1">Make your meal special</h2>
+      <h2 className="home__heading heading-1">Make Your Meal Plan</h2>
       <div className="home__door">
         <Link to="/meal">
           <h4 className="home__door-heading heading-2">Meal</h4>

@@ -1,6 +1,6 @@
 const initialState = {
   isAuthenticated: null,
-  user: null,
+  user: {},
   error: null,
   loading: null,
 };
@@ -17,14 +17,14 @@ export default (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: action.payload,
+        user: action.payload.user,
       };
     }
     case 'REGISTER_SUCCESS':
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        ...action.payload,
+        user: action.payload.user,
         isAuthenticated: true,
         loading: false,
       };
@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        user: null,
+        user: {},
         loading: false,
       };
     default:

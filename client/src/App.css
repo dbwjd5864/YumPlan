@@ -255,7 +255,21 @@ li {
   padding: 0.9rem;
 }
 
-/* User */
-/* .user__name {
-  text-transform: uppercase;
-} */
+/* Meal */
+.meal {
+  width: 60rem;
+  margin: 10rem 0;
+}
+
+.meal__search {
+  background-color: antiquewhite;
+}
+
+.meal__container {
+  background-color: aquamarine;
+}
+
+.meal__search > form {
+  display: flex;
+  justify-content: center;
+}
