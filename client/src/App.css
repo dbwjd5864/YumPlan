@@ -257,7 +257,7 @@ li {
 
 /* Meal */
 .meal {
-  width: 60rem;
+  width: 90rem;
   margin: 10rem 0;
 }
 
@@ -267,9 +267,16 @@ li {
 
 .meal__container {
   background-color: aquamarine;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }
 
 .meal__search > form {
   display: flex;
   justify-content: center;
+}
+
+/* Meal Item */
+.meal__item--img {
+  width: 23rem;
 }
