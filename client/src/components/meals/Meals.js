@@ -6,21 +6,27 @@ import MealItem from './MealItem';
 import { getAllMeals } from '../../actions/mealActions';
 
 const Meal = () => {
-  const { meals } = useSelector((state) => state.meals);
+  const { meals, filtered } = useSelector((state) => state.meals);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllMeals());
-  }, []);
+  }, [meals]);
 
   return (
     <div className="meal">
       <div className="meal__search">
-        <MealFilter />
+        <MealFilter filtered />
       </div>
       <div className="meal__container">
-        {meals
+        {meals && !filtered
           ? meals.map((meal) => {
+              if (meal.type === 'public') {
+                return <MealItem key={meal._id} meal={meal} />;
+              }
+            })
+          : filtered
+          ? filtered.map((meal) => {
               if (meal.type === 'public') {
                 return <MealItem key={meal._id} meal={meal} />;
               }

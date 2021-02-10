@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterMeals, clearFilter } from '../../actions/mealActions';
+import SvgIcon from '../layout/SvgIcon';
 
-const MealFilter = () => {
-  const { filtered } = useSelector((state) => state.meals);
+const MealFilter = ({ filtered }) => {
   const search = useRef('');
   const dispatch = useDispatch();
 
@@ -22,14 +22,20 @@ const MealFilter = () => {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="meal__search-container"
+    >
       <input
+        className="meal__search-input"
         ref={search}
         type="text"
         placeholder="Find your daily meal..."
         onChange={filterMeal}
       />
-      <button className="search__btn">Enter</button>
+      <button className="meal__search-btn">
+        <SvgIcon name="search" color="#fff" width="2rem" height="1.7rem" />
+      </button>
     </form>
   );
 };
