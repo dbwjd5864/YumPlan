@@ -8,6 +8,8 @@ import About from './components/pages/About';
 import Meal from './components/meals/Meals';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
+import MealPlanner from './components/meals/MealPlanner/MealPlanner';
+import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/meal" component={Meal} />
+          <PrivateRoute exact path="/meal/planner" component={MealPlanner} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />

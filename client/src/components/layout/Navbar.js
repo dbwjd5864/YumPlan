@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/userActions';
 
@@ -7,15 +7,11 @@ const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      history.push('/');
-    }
-  }, [isAuthenticated]);
+  const location = useLocation();
 
   const onLogout = () => {
     dispatch(logout());
+    history.push('/');
     // dispatch(clearPlanner());
   };
 
@@ -54,6 +50,21 @@ const Navbar = () => {
       <ul className="navigation__list">
         {isAuthenticated ? authLinks() : guestLinks}
       </ul>
+
+      <nav className="nav__container">
+        {location.pathname !== '/' ? (
+          <ul className="nav__background nav__meal">
+            <li className="nav__meal-item">
+              <Link to="/meal/planner">Planner</Link>
+            </li>
+            <li className="nav__meal-item">
+              <Link to="/meal/favorite/:name">Favorite</Link>
+            </li>
+          </ul>
+        ) : (
+          <h2 className="nav__background heading-1">Make Your Meal Plan</h2>
+        )}
+      </nav>
     </header>
   );
 };

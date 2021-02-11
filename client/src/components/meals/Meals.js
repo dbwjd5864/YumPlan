@@ -11,7 +11,7 @@ const Meal = () => {
 
   useEffect(() => {
     dispatch(getAllMeals());
-  }, [meals]);
+  }, [dispatch]);
 
   return (
     <div className="meal">

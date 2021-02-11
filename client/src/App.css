@@ -98,26 +98,12 @@ li {
 .home__door-heading {
   position: absolute;
   top: 35%;
-  left: 42%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: var(--text-color);
   border-radius: 10px;
   color: #fff;
   padding: 1rem 2rem;
-}
-
-.home__door-heading::before {
-  content: '\\';
-  position: absolute;
-  top: -20px;
-  color: var(--text-color);
-}
-
-.home__door-heading::after {
-  content: '/';
-  position: absolute;
-  top: -21px;
-  right: 23px;
-  color: var(--text-color);
 }
 
 .home__door-img {
@@ -157,7 +143,7 @@ li {
   background-image: url(./img/waves.svg);
   background-size: contain;
   background-repeat: repeat-x;
-  z-index: -1;
+  z-index: 1;
 }
 
 .navigation__header {
@@ -178,9 +164,57 @@ li {
   margin-right: 4rem;
 }
 
+.nav__container {
+  width: 100%;
+  position: relative;
+}
+
+.nav__background {
+  color: #fff;
+  background-color: var(--text-color);
+  border-radius: 10px;
+  border-style: 15px dashed red;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 80%;
+  top: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav__background::before {
+  content: '\\';
+  position: absolute;
+  top: -70px;
+  left: 23px;
+  font-size: 8rem;
+  color: var(--text-color);
+  transform: scale(1rem);
+}
+
+.nav__background::after {
+  content: '/';
+  position: absolute;
+  top: -70px;
+  right: 23px;
+  font-size: 8rem;
+  color: var(--text-color);
+}
+
+.nav__meal {
+  justify-content: space-evenly;
+}
+
+.nav__meal-item > a {
+  color: #fff;
+  font-size: 2.5rem;
+}
+
 /* Sign Up && Log In */
 .form-container {
-  margin: 10rem 0;
+  margin: 18rem 0 10rem;
   padding: 3rem;
   width: 50rem;
 }

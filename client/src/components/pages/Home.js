@@ -6,7 +6,6 @@ import SvgIcon from '../layout/SvgIcon';
 const Home = () => {
   return (
     <div className="home">
-      <h2 className="home__heading heading-1">Make Your Meal Plan</h2>
       <div className="home__instruction">
         <p className="home__instruction heading-2">Clink the Door</p>
         <SvgIcon
