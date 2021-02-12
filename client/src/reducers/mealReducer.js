@@ -30,6 +30,18 @@ export default (state = initialState, action) => {
         ...state,
         filtered: null,
       };
+    case 'CREATE_MEALPLAN_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        meals: [...state.meals, action.payload.mealPlan],
+      };
+    case 'CREATE_MEALPLAN_FAIL':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

@@ -27,5 +27,8 @@
 <symbol id="icon-triangle-right" viewBox="0 0 20 20">
 <path d="M15 10l-9 5v-10l9 5z"></path>
 </symbol>
+<symbol id="icon-plus-alt" viewBox="0 0 32 32">
+<path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"></path>
+</symbol>
 </defs>
 </svg>

@@ -21,13 +21,13 @@ const Meal = () => {
       <div className="meal__container">
         {meals && !filtered
           ? meals.map((meal) => {
-              if (meal.type === 'public') {
+              if (meal.type === 'Public') {
                 return <MealItem key={meal._id} meal={meal} />;
               }
             })
           : filtered
           ? filtered.map((meal) => {
-              if (meal.type === 'public') {
+              if (meal.type === 'Public') {
                 return <MealItem key={meal._id} meal={meal} />;
               }
             })

@@ -55,10 +55,13 @@ const Navbar = () => {
         {location.pathname !== '/' ? (
           <ul className="nav__background nav__meal">
             <li className="nav__meal-item">
+              <Link to="/meal">Meals</Link>
+            </li>
+            <li className="nav__meal-item">
               <Link to="/meal/planner">Planner</Link>
             </li>
             <li className="nav__meal-item">
-              <Link to="/meal/favorite/:name">Favorite</Link>
+              <Link to="/meal/favorite/">Favorite</Link>
             </li>
           </ul>
         ) : (

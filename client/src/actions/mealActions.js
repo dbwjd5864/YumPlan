@@ -13,6 +13,19 @@ export const getAllMeals = () => async (dispatch) => {
   }
 };
 
+export const createMealPlan = (mealPlan) => async (dispatch) => {
+  try {
+    const { data } = await api.createMealPlan(mealPlan);
+
+    dispatch({ type: 'CREATE_MEALPLAN_SUCCESS', payload: data });
+  } catch (err) {
+    dispatch({
+      type: 'CREATE_MEALPLAN_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
 export const filterMeals = (search) => async (dispatch) => {
   dispatch({ type: 'FILTER_MEALS', payload: search });
 };

@@ -16,8 +16,8 @@ const MealSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['public', 'private'],
-    default: 'private',
+    enum: ['Public', 'Private'],
+    default: 'Private',
   },
   tags: [
     {

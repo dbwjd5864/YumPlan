@@ -50,6 +50,7 @@ exports.createMealPlan = async (req, res) => {
   }
 
   try {
+    console.log(req.body);
     const newPlan = await Meal.create(req.body);
 
     res.status(201).json({

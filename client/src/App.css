@@ -426,3 +426,31 @@ li {
 .meal__item-tags > svg {
   margin-left: 1rem;
 }
+
+/* Planner */
+.planner {
+  width: 110rem;
+  margin: 20rem 0;
+}
+
+.planner__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 5rem 0;
+}
+
+.planner__item,
+.planner__form {
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid black;
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.planner__form-input {
+  border-bottom: 1px solid var(--text-color-highlight);
+}
