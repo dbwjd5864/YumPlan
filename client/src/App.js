@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
@@ -12,7 +13,15 @@ import MealPlanner from './components/meals/MealPlanner/MealPlanner';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 
+import { isLoggedIn } from './actions/userActions';
+
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(isLoggedIn());
+  }, []);
+
   return (
     <Router>
       <Navbar />
@@ -20,7 +29,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/meal" component={Meal} />
-          <Route exact path="/meal/planner" component={MealPlanner} />
+          <PrivateRoute exact path="/meal/planner" component={MealPlanner} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />

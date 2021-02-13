@@ -451,6 +451,11 @@ li {
   align-items: center;
 }
 
+.planner__form {
+  grid-row: 1 / span 2;
+  height: 100%;
+}
+
 .planner__form-input {
   border-bottom: 1px solid var(--text-color-highlight);
 }

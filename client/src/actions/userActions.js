@@ -1,6 +1,18 @@
 import * as api from '../api';
 import { returnErrors } from './errorActions';
 
+export const isLoggedIn = () => async (dispatch) => {
+  try {
+    const { data } = await api.isLoggedIn();
+
+    dispatch({ type: 'USER_LOADED', payload: data });
+  } catch (err) {
+    console.log(err);
+
+    dispatch({ type: 'AUTH_FAIL' });
+  }
+};
+
 export const signup = (newUser) => async (dispatch) => {
   try {
     const { data } = await api.signup(newUser);

@@ -12,14 +12,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: true,
       };
-    case 'USER_LOADED': {
-      return {
-        ...state,
-        isAuthenticated: true,
-        loading: false,
-        user: action.payload.user,
-      };
-    }
+    case 'USER_LOADED':
     case 'REGISTER_SUCCESS':
     case 'LOGIN_SUCCESS':
       return {
@@ -28,7 +21,7 @@ export default (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
       };
-    case 'AUTH_ERROR':
+    case 'AUTH_FAIL':
     case 'REGISTER_FAIL':
     case 'LOGIN_FAIL':
     case 'LOGOUT':
