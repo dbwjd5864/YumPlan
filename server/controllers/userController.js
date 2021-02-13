@@ -5,7 +5,7 @@ const { promisify } = require('util');
 
 const createSendToken = (user, statusCode, req, res) => {
   const token = jwt.sign({ user: user._id }, process.env.TOKEN_SECRET, {
-    expiresIn: 3600,
+    expiresIn: process.env.TOKEN_EXPIRES_IN,
   });
   const cookieOption = {
     expires: new Date(
@@ -129,7 +129,9 @@ exports.isLoggedIn = async (req, res) => {
         user: currentUser,
       });
     } catch (err) {
-      res.status(200).json({
+      console.log(err.message);
+
+      res.status(401).json({
         msg: 'No valid token. Please log in.',
       });
     }

@@ -61,103 +61,123 @@ const MealPlannerForm = () => {
 
   return (
     <div className="planner__form">
-      <h2>Add Meal Plan</h2>
+      <fieldset className="planner__form-border">
+        <legend className="planner__form-heading heading-2">
+          Add Meal Plan
+        </legend>
 
-      <form onSubmit={submitMealPlan}>
-        <div className="planner__form-group">
-          <input
-            className="planner__form-radio"
-            checked={type === 'Public'}
-            type="radio"
-            name="type"
-            value="Public"
-            onChange={changeForMealPlan}
-          />
-          <label className="planner__form-radioLabel">Public </label>
-
-          <input
-            className="planner__form-radio"
-            checked={type === 'Private'}
-            type="radio"
-            name="type"
-            value="Private"
-            onChange={changeForMealPlan}
-          />
-          <label className="planner__form-radioLabel">Private </label>
-        </div>
-
-        <div className="planner__form-group">
-          <input
-            className="planner__form-input"
-            type="text"
-            name="name"
-            value={name}
-            onChange={changeForMealPlan}
-            placeholder="Meal Name"
-          ></input>
-        </div>
-
-        <div className="planner__form-group">
-          <input
-            className="planner__form-input"
-            type="text"
-            name="ingredient"
-            value={ingredient}
-            onChange={(e) => setIngredient(e.target.value)}
-            placeholder="Ingredients"
-          ></input>
-          <button
-            className="planner__form-inputAdd"
-            onClick={addInput('ingredients')}
-          >
-            <SvgIcon
-              name="plus-alt"
-              color="#999"
-              width="1.3rem"
-              height="1.3rem"
+        <form className="planner__form-container" onSubmit={submitMealPlan}>
+          <div className="planner__form-groupRadio">
+            <input
+              className="planner__form-radio"
+              checked={type === 'Public'}
+              type="radio"
+              name="type"
+              value="Public"
+              onChange={changeForMealPlan}
             />
-          </button>
-          <p className="planner__form-array ingredients">
-            {ingredients.map((ingredient, index) => {
-              return <span key={index}>{ingredient} </span>;
-            })}
-          </p>
-        </div>
+            <label className="planner__form-radioLabel">Public </label>
 
-        <div className="planner__form-group">
-          <input
-            className="planner__form-input"
-            type="text"
-            name="tag"
-            value={tag}
-            onChange={(e) => setTag(e.target.value)}
-            placeholder="Tags"
-          ></input>
-          <button className="planner__form-inputAdd" onClick={addInput('tags')}>
-            <SvgIcon
-              name="plus-alt"
-              color="#999"
-              width="1.3rem"
-              height="1.3rem"
+            <input
+              className="planner__form-radio"
+              checked={type === 'Private'}
+              type="radio"
+              name="type"
+              value="Private"
+              onChange={changeForMealPlan}
             />
-          </button>
-          <p className="planner__form-array tags">
-            {tags.map((tag, index) => {
-              return <span key={index}>#{tag} </span>;
-            })}
-          </p>
-        </div>
+            <label className="planner__form-radioLabel">Private </label>
+          </div>
 
-        <div className="planner__form-group">
-          <FileBase
-            type="file"
-            multiple={false}
-            onDone={({ base64 }) => setMealPlan({ ...mealPlan, photo: base64 })}
+          <div className="planner__form-groupInput">
+            <div className="planner__form-group">
+              <input
+                className="planner__form-input planner__form-inputName"
+                type="text"
+                name="name"
+                value={name}
+                onChange={changeForMealPlan}
+                placeholder="Meal Name"
+              ></input>
+            </div>
+
+            <div className="planner__form-group">
+              <div className="planner__input-container">
+                <input
+                  className="planner__form-input"
+                  type="text"
+                  name="ingredient"
+                  value={ingredient}
+                  onChange={(e) => setIngredient(e.target.value)}
+                  placeholder="Ingredients"
+                ></input>
+                <button
+                  className="planner__form-inputAdd"
+                  onClick={addInput('ingredients')}
+                >
+                  <SvgIcon
+                    name="plus-alt"
+                    color="#999"
+                    width="1.6rem"
+                    height="1.6rem"
+                  />
+                </button>
+              </div>
+              <p className="planner__form-array ingredients">
+                {ingredients.map((ingredient, index) => {
+                  return <span key={index}>{ingredient} </span>;
+                })}
+              </p>
+            </div>
+
+            <div className="planner__form-group">
+              <div className="planner__input-container">
+                <input
+                  className="planner__form-input"
+                  type="text"
+                  name="tag"
+                  value={tag}
+                  onChange={(e) => setTag(e.target.value)}
+                  placeholder="Tags"
+                ></input>
+                <button
+                  className="planner__form-inputAdd"
+                  onClick={addInput('tags')}
+                >
+                  <SvgIcon
+                    name="plus-alt"
+                    color="#999"
+                    width="1.6rem"
+                    height="1.6rem"
+                  />
+                </button>
+              </div>
+              <p className="planner__form-array tags">
+                {tags.map((tag, index) => {
+                  return <span key={index}>#{tag}</span>;
+                })}
+              </p>
+            </div>
+          </div>
+
+          <div className="planner__form-group">
+            <FileBase
+              id="file-upload"
+              type="file"
+              multiple={false}
+              onDone={({ base64 }) =>
+                setMealPlan({ ...mealPlan, photo: base64 })
+              }
+            />
+          </div>
+
+          <input
+            type="submit"
+            value="Add Your Meal Plan"
+            className="form__button"
           />
-        </div>
-
-        <input type="submit" value="Register" className="signup__button" />
-      </form>
+        </form>
+      </fieldset>
     </div>
   );
 };

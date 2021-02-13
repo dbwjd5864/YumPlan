@@ -8,7 +8,7 @@
   --secondary-color-2: #eb9f9f;
 
   --text-color: #8d8479;
-  --text-color-highlight: #d9cbb9;
+  --text-color-highlight: rgb(217, 203, 185);
 
   --grey: #999;
   --grey-light: rgb(211, 211, 211);
@@ -263,7 +263,8 @@ li {
 }
 
 .signup__button,
-.login__button {
+.login__button,
+.form__button {
   width: 100%;
   font-size: 2rem;
   padding: 0.8rem;
@@ -439,8 +440,7 @@ li {
   gap: 5rem 0;
 }
 
-.planner__item,
-.planner__form {
+.planner__item {
   width: 30rem;
   height: 30rem;
   border: 1px solid black;
@@ -454,8 +454,100 @@ li {
 .planner__form {
   grid-row: 1 / span 2;
   height: 100%;
+  justify-self: center;
+}
+
+.planner__form-border {
+  width: 30rem;
+  height: 65rem;
+  padding: 1.2rem;
+  border: 2px solid var(--text-color);
+  border-radius: 10px;
+}
+
+.planner__form-heading {
+  text-align: center;
+  padding: 0 1.3rem;
 }
 
 .planner__form-input {
-  border-bottom: 1px solid var(--text-color-highlight);
+  border-bottom: 2px solid var(--text-color-highlight);
+  padding: 0 0 0.3rem;
+  font-size: 1.8rem;
+  width: 100%;
+}
+
+.planner__form-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.planner__input-container {
+  position: relative;
+}
+
+.planner__form-group {
+  position: relative;
+  margin: 1rem 0 0;
+}
+
+.planner__form-groupInput {
+  margin: 2rem 0;
+  width: 80%;
+}
+
+.planner__form-groupRadio {
+  margin: 2rem 0 1rem;
+}
+
+.planner__form-radioLabel {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+}
+
+.planner__form-inputAdd {
+  position: absolute;
+  background-color: transparent;
+  bottom: 0.3rem;
+  right: 0;
+}
+
+.planner__form-array {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  margin-top: 1.2rem;
+  width: 100%;
+  height: 12rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 3px solid var(--text-color-highlight);
+  background-color: rgba(217, 203, 185, 0.2);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.planner__form-array > span {
+  display: block;
+}
+
+input[type='file'] {
+  padding: 0.5rem 0.8rem;
+  margin: 1rem 0 1.5rem;
+}
+
+input[type='file']::before {
+  content: 'Upload Image';
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  padding: 0.5rem 0.2rem;
+  background-color: #fff;
+  border: 1px solid var(--grey);
+  border-radius: 3px;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
 }
