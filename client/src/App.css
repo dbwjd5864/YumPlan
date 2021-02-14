@@ -80,6 +80,10 @@ li {
   font-size: 2.5rem;
 }
 
+select {
+  padding: 0.3rem 0;
+}
+
 /* Home */
 .home {
   display: flex;
@@ -428,27 +432,89 @@ li {
   margin-left: 1rem;
 }
 
-/* Planner */
+/* Planner Item */
+.planner__item {
+  width: 30rem;
+  height: 45rem;
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.planner__item-border {
+  width: 30rem;
+  height: 100%;
+  padding: 1.2rem;
+  border: 3px solid;
+  border-radius: 10px;
+}
+
+.mon {
+  border-color: #dfc3b7;
+}
+
+.tue {
+  border-color: #f5e5c9;
+}
+
+.tue > legend {
+  text-align: center;
+}
+
+.wed {
+  border-color: #d5dcac;
+}
+
+.wed > legend {
+  text-align: right;
+}
+
+.thur {
+  border-color: #ebeec4;
+}
+
+.thur > legend {
+  text-align: right;
+}
+
+.fri {
+  border-color: #b5cebf;
+}
+
+.sat {
+  border-color: #cedcc7;
+}
+
+.sat > legend {
+  text-align: center;
+}
+
+.sun {
+  border-color: #a8c1c6;
+}
+
+.planner__item-heading {
+  padding: 0 1.3rem;
+}
+
+/* Planner Form */
 .planner {
   width: 110rem;
-  margin: 20rem 0;
+  margin: 18rem 0;
+}
+
+.planner__week {
+  font-size: 3rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
 .planner__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 5rem 0;
-}
-
-.planner__item {
-  width: 30rem;
-  height: 30rem;
-  border: 1px solid black;
-  justify-self: center;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .planner__form {
@@ -502,7 +568,8 @@ li {
   margin: 2rem 0 1rem;
 }
 
-.planner__form-radioLabel {
+.planner__form-radioLabel,
+.planner__form-selectLabel {
   font-size: 1.5rem;
   margin: 0 0.5rem;
 }

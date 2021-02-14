@@ -12,6 +12,9 @@ router
   .route('/planner')
   .get(mealController.getPlanner)
   .post(mealController.createMealPlan);
+
+router.get('/planner/weekly-plan/:week', mealController.getWeeklyPlan);
+
 router
   .route('/planner/:planId')
   .patch(mealController.updateMealPlan)

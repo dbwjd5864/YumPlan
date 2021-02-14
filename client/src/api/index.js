@@ -19,6 +19,9 @@ export const getAllMeals = () => axios.get(`${mealUrl}`);
 
 export const getMealPlanner = () => axios.get(`${mealUrl}/planner`);
 
+export const getWeeklyPlanner = (week) =>
+  axios.get(`${mealUrl}/planner/weekly-plan/${week}`);
+
 export const createMealPlan = (mealPlan) =>
   axios.post(`${mealUrl}/planner`, mealPlan);
 

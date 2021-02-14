@@ -25,7 +25,7 @@ exports.getAllMeals = async (req, res) => {
 // @access    Private
 exports.getPlanner = async (req, res) => {
   try {
-    const mealPlans = await await User.findById(req.user._id)
+    const mealPlans = await User.findById(req.user._id)
       .select({ mealPlan: 1 })
       .populate('mealPlan');
 
@@ -58,6 +58,44 @@ exports.createMealPlan = async (req, res) => {
       mealPlan: newPlan,
     });
   } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
+// @route     GET api/v1/meal/planner/weekly-plan/:week
+// @desc      Get the weekly meal plan
+// @access    Private
+exports.getWeeklyPlan = async (req, res) => {
+  const startDate = req.params.week; // 2021-02-08
+  const endDate = new Date().setDate(startDate.split('-')[2] + 7);
+  const userId = req.user._id;
+
+  try {
+    const weeklyPlan = await Meal.aggregate([
+      {
+        $match: {
+          $and: [
+            { user: userId },
+            {
+              createdAt: {
+                $gte: new Date(startDate),
+                $lte: new Date(endDate),
+              },
+            },
+          ],
+        },
+      },
+    ]);
+
+    res.status(200).json({
+      status: 'success',
+      weeklyPlan,
+    });
+  } catch (err) {
+    console.log(err.message);
     res.status(500).json({
       status: 'fail',
       err,

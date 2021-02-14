@@ -27,7 +27,7 @@ const Navbar = () => {
   );
 
   const authLinks = () => {
-    const name = user.name[0].toUpperCase() + user.name.slice(1);
+    const name = user.name[0].toUpperCase() + user.name.split(' ')[0].slice(1);
     return (
       <Fragment>
         <li className="navigation__list-item user__name">

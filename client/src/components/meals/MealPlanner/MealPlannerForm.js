@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createMealPlan } from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
-const MealPlannerForm = () => {
+const MealPlannerForm = ({ week }) => {
   const dispatch = useDispatch();
 
   const [mealPlan, setMealPlan] = useState({
@@ -13,11 +13,12 @@ const MealPlannerForm = () => {
     type: '',
     tags: [],
     ingredients: [],
+    createdAt: '',
   });
 
   const [ingredient, setIngredient] = useState('');
   const [tag, setTag] = useState('');
-  const { name, photo, type, tags, ingredients } = mealPlan;
+  const { name, photo, type, tags, ingredients, createdAt } = mealPlan;
 
   const changeForMealPlan = (e) => {
     setMealPlan({
@@ -54,6 +55,7 @@ const MealPlannerForm = () => {
         type,
         tags,
         ingredients,
+        createdAt,
         photo,
       })
     );
@@ -87,6 +89,27 @@ const MealPlannerForm = () => {
               onChange={changeForMealPlan}
             />
             <label className="planner__form-radioLabel">Private </label>
+          </div>
+
+          <div className="planner__form-groupDate">
+            <label className="planner__form-selectLabel" htmlFor="date">
+              Choose a date:
+            </label>
+
+            <select
+              id="date"
+              name="createdAt"
+              value={createdAt}
+              onChange={changeForMealPlan}
+            >
+              {week.map((date) => {
+                return (
+                  <option key={date} value={date}>
+                    {date}
+                  </option>
+                );
+              })}
+            </select>
           </div>
 
           <div className="planner__form-groupInput">

@@ -103,7 +103,7 @@ exports.logout = (req, res) => {
 };
 
 // @route     GET api/v1/user
-// @desc      checking the user is logged in
+// @desc      check the user is logged in
 // @access    Private
 exports.isLoggedIn = async (req, res) => {
   if (req.cookies.jwt) {

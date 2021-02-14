@@ -1,5 +1,6 @@
 const initialState = {
   meals: null,
+  mealPlans: null,
   loading: true,
   filtered: null,
   error: null,
@@ -13,7 +14,15 @@ export default (state = initialState, action) => {
         meals: action.payload.meals,
         loading: false,
       };
+    case 'FETCH_MEALPLAN_SUCCESS': {
+      return {
+        ...state,
+        mealPlans: action.payload.mealPlans.mealPlan,
+        loading: false,
+      };
+    }
     case 'FETCH_MEALS_FAIL':
+    case 'FETCH_MEALPLAN_FAIL':
       return {
         loading: false,
         error: action.payload,
@@ -35,6 +44,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         meals: [...state.meals, action.payload.mealPlan],
+        mealPlans: [...state.mealPlans, action.payload.mealPlan],
       };
     case 'CREATE_MEALPLAN_FAIL':
       return {
