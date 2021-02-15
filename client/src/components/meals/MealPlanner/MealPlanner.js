@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MealPlannerForm from './MealPlannerForm';
 import MealPlannerItem from './MealPlannerItem';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getMealPlanner, getWeeklyPlanner } from '../../../actions/mealActions';
 
 const MealPlanner = () => {
@@ -51,10 +51,10 @@ const MealPlanner = () => {
       </div>
       <div className="planner__container">
         <MealPlannerForm week={week} />
-        {day.map((day) => {
+        {day.map((day, index) => {
           return (
             <div key={day} className="planner__item">
-              <MealPlannerItem day={day} />
+              <MealPlannerItem day={day} index={index} />
             </div>
           );
         })}

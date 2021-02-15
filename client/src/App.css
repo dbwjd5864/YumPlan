@@ -437,10 +437,7 @@ select {
   width: 30rem;
   height: 45rem;
   justify-self: center;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow-y: scroll;
 }
 
 .planner__item-border {
@@ -499,6 +496,72 @@ select {
   padding: 0 1.3rem;
 }
 
+.planner__item-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.7rem;
+
+  width: 100%;
+  height: 100%;
+}
+
+.planner__item-imgContainer {
+  position: relative;
+}
+
+.planner__item-minusBtn,
+.planner__item-updateBtn {
+  background-color: transparent;
+}
+
+.planner__item-minusBtn {
+  align-self: flex-end;
+  margin: -1rem 1rem 0.5rem;
+}
+
+.planner__item-updateBtn {
+  position: absolute;
+  right: 1rem;
+  bottom: 0;
+}
+
+.planner__item-img {
+  width: 27rem;
+  background-color: #f0ead8;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.planner__item-name {
+  font-size: 2rem;
+  margin: 1rem;
+  text-align: center;
+}
+
+.planner__item-ingredients {
+  font-size: 1.5rem;
+  flex: 1;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.planner__item-ingredients span {
+  display: block;
+  margin: 0.9rem 0.5rem;
+  border-bottom: 1px solid var(--grey-light);
+}
+
+.planner__item-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+
+.planner__item-tags > svg {
+  margin-left: 1rem;
+}
+
 /* Planner Form */
 .planner {
   width: 110rem;
@@ -514,6 +577,7 @@ select {
 .planner__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 5rem 0;
 }
 
