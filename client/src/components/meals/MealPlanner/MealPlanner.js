@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import MealPlannerForm from './MealPlannerForm';
 import MealPlannerItem from './MealPlannerItem';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMealPlanner, getWeeklyPlanner } from '../../../actions/mealActions';
 
 const MealPlanner = () => {
   const day = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 
   const [week, setWeek] = useState([]);
-
+  const { mealPlans } = useSelector((state) => state.meals);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const MealPlanner = () => {
 
   useEffect(() => {
     dispatch(getWeeklyPlanner(week[0]));
-  }, [week]);
+  }, [mealPlans]);
 
   const setWeekly = () => {
     let today = new Date();

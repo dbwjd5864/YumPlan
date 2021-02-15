@@ -2,10 +2,16 @@ import React from 'react';
 import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  clearCurrentMealPlan,
+  deleteMealPlan,
+  setCurrentMealPlan,
+} from '../../../actions/mealActions';
 
 const MealPlannerItem = ({ day, index }) => {
   const { weeklyPlans } = useSelector((state) => state.meals);
+  const dispatch = useDispatch();
 
   return (
     <fieldset className={`planner__item-border ${day}`}>
@@ -18,7 +24,13 @@ const MealPlannerItem = ({ day, index }) => {
           if (new Date(plan.createdAt).getDay() === index) {
             return (
               <div key={plan.name + index} className="planner__item-group">
-                <button className="planner__item-minusBtn">
+                <button
+                  className="planner__item-minusBtn"
+                  onClick={() => {
+                    dispatch(deleteMealPlan(plan._id));
+                    clearCurrentMealPlan();
+                  }}
+                >
                   <SvgIcon
                     name="minus-circle"
                     color="#8d8479"
@@ -33,7 +45,10 @@ const MealPlannerItem = ({ day, index }) => {
                     src={plan.photo === 'spoon.png' ? defaultImg : plan.photo}
                     alt={plan.name}
                   />
-                  <button className="planner__item-updateBtn">
+                  <button
+                    className="planner__item-updateBtn"
+                    onClick={() => dispatch(setCurrentMealPlan(plan))}
+                  >
                     <SvgIcon
                       name="more-horizontal"
                       color="#8d8479"

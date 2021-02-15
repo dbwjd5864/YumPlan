@@ -8,7 +8,7 @@ const MealItem = ({ meal }) => {
   return (
     <div className="meal__item">
       <div className="meal__item-like">
-        <button className="meal__item-likeBtn">
+        <button className="meal__item-likeBtn" onClick={() => {}}>
           <SvgIcon
             name="heart"
             color="#eb9f9f"

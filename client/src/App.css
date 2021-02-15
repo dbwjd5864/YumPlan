@@ -577,7 +577,6 @@ select {
 .planner__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(30rem, 1fr));
   gap: 5rem 0;
 }
 
@@ -587,9 +586,20 @@ select {
   justify-self: center;
 }
 
+.planner__form-clearBtn {
+  background-color: var(--text-color);
+  color: #fff;
+  padding: 0.3rem 0.9rem 0.3rem 0.7rem;
+  border-radius: 5px;
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  font-size: 1.7rem;
+}
+
 .planner__form-border {
   width: 30rem;
-  height: 65rem;
+  height: 68rem;
   padding: 1.2rem;
   border: 2px solid var(--text-color);
   border-radius: 10px;

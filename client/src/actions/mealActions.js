@@ -53,3 +53,42 @@ export const filterMeals = (search) => async (dispatch) => {
 export const clearFilter = () => async (dispatch) => {
   dispatch({ type: 'CLEAR_FILTER' });
 };
+
+export const updateMealPlan = (mealId, mealPlan) => async (dispatch) => {
+  try {
+    const { data } = await api.updateMealPlan(mealId, mealPlan);
+
+    dispatch({ type: 'UPDATE_MEALPLAN_SUCCESS', payload: data });
+  } catch (err) {
+    dispatch({
+      type: 'UPDATE_MEALPLAN_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
+export const deleteMealPlan = (mealId) => async (dispatch) => {
+  try {
+    await api.deleteMealPlan(mealId);
+
+    dispatch({ type: 'DELETE_MEALPLAN_SUCCESS', payload: mealId });
+  } catch (err) {
+    dispatch({
+      type: 'DELETE_MEALPLAN_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
+export const setCurrentMealPlan = (mealPlan) => async (dispatch) => {
+  dispatch({
+    type: 'SET_CURRENT_MEALPLAN',
+    payload: mealPlan,
+  });
+};
+
+export const clearCurrentMealPlan = () => async (dispatch) => {
+  dispatch({
+    type: 'CLEAR_CURRENT_MEALPLAN',
+  });
+};

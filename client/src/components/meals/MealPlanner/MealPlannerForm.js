@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   createMealPlan,
-  getWeeklyPlanner,
-  getMealPlanner,
+  updateMealPlan,
+  clearCurrentMealPlan,
 } from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealPlannerForm = ({ week }) => {
   const dispatch = useDispatch();
+  const { currentMealPlan } = useSelector((state) => state.meals);
+
+  useEffect(() => {
+    if (currentMealPlan !== null) {
+      setMealPlan(currentMealPlan);
+    } else {
+      setMealPlan({
+        name: '',
+        photo: '',
+        type: 'Private',
+        tags: [],
+        ingredients: [],
+        createdAt: '',
+      });
+    }
+  }, [currentMealPlan]);
 
   const [mealPlan, setMealPlan] = useState({
     name: '',
     photo: '',
-    type: '',
+    type: 'Private',
     tags: [],
     ingredients: [],
     createdAt: '',
@@ -60,38 +76,60 @@ const MealPlannerForm = ({ week }) => {
   const submitMealPlan = (e) => {
     e.preventDefault();
 
-    dispatch(
-      createMealPlan({
-        name,
-        type,
-        tags,
-        ingredients,
-        createdAt,
-        photo,
-      })
-    );
+    if (currentMealPlan === null) {
+      dispatch(
+        createMealPlan({
+          name,
+          type,
+          tags,
+          ingredients,
+          createdAt,
+          photo,
+        })
+      );
+    } else {
+      dispatch(
+        updateMealPlan({
+          name,
+          type,
+          tags,
+          ingredients,
+          createdAt,
+          photo,
+        })
+      );
+    }
 
+    dispatch(clearCurrentMealPlan());
     setMealPlan({
       name: '',
       photo: '',
-      type: '',
+      type: 'Private',
       tags: [],
       ingredients: [],
       createdAt: '',
     });
-
-    dispatch(getWeeklyPlanner(week[0]));
-    dispatch(getMealPlanner());
   };
 
   return (
     <div className="planner__form">
       <fieldset className="planner__form-border">
         <legend className="planner__form-heading heading-2">
-          Add Meal Plan
+          {currentMealPlan ? 'Update Meal Plan' : 'Add Meal Plan'}
         </legend>
 
         <form className="planner__form-container" onSubmit={submitMealPlan}>
+          <button
+            type="button"
+            className="planner__form-clearBtn"
+            onClick={() => {
+              dispatch(clearCurrentMealPlan());
+            }}
+          >
+            <SvgIcon name="clear" color="#fff" width="2.2rem" height="2.2rem" />
+            CLEAR
+          </button>
+
           <div className="planner__form-groupRadio">
             <input
               className="planner__form-radio"
@@ -113,7 +151,6 @@ const MealPlannerForm = ({ week }) => {
             />
             <label className="planner__form-radioLabel">Private </label>
           </div>
-
           <div className="planner__form-groupDate">
             <label className="planner__form-selectLabel" htmlFor="date">
               Choose a date:
@@ -136,7 +173,6 @@ const MealPlannerForm = ({ week }) => {
                 })}
             </select>
           </div>
-
           <div className="planner__form-groupInput">
             <div className="planner__form-group">
               <input
@@ -160,6 +196,7 @@ const MealPlannerForm = ({ week }) => {
                   placeholder="Ingredients"
                 ></input>
                 <button
+                  type="button"
                   className="planner__form-inputAdd"
                   onClick={addIngredient}
                 >
@@ -188,7 +225,11 @@ const MealPlannerForm = ({ week }) => {
                   onChange={(e) => setTag(e.target.value)}
                   placeholder="Tags"
                 ></input>
-                <button className="planner__form-inputAdd" onClick={addTag}>
+                <button
+                  type="button"
+                  className="planner__form-inputAdd"
+                  onClick={addTag}
+                >
                   <SvgIcon
                     name="plus-alt"
                     color="#999"
@@ -204,7 +245,6 @@ const MealPlannerForm = ({ week }) => {
               </p>
             </div>
           </div>
-
           <div className="planner__form-group">
             <FileBase
               id="file-upload"
@@ -215,10 +255,11 @@ const MealPlannerForm = ({ week }) => {
               }
             />
           </div>
-
           <input
             type="submit"
-            value="Add Your Meal Plan"
+            value={
+              currentMealPlan ? 'Update Your Meal Plan' : 'Add Your Meal Plan'
+            }
             className="form__button"
           />
         </form>
