@@ -23,10 +23,14 @@ export const getMealPlanner = () => async (dispatch) => {
   }
 };
 
-export const getWeeklyPlanner = () => async (dispatch) => {
+export const getWeeklyPlanner = (week) => async (dispatch) => {
   try {
-    const { data } = await api.getWeeklyPlanner();
-  } catch (err) {}
+    const { data } = await api.getWeeklyPlanner(week);
+
+    dispatch({ type: 'FETCH_WEEKLYPLAN_SUCCESS', payload: data });
+  } catch (err) {
+    dispatch({ type: 'FETCH_WEEKLYPLAN_FAIL', payload: err.message });
+  }
 };
 
 export const createMealPlan = (mealPlan) => async (dispatch) => {

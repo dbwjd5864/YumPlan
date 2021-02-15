@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="home__instruction">
-        <p className="home__instruction heading-2">Clink the Door</p>
+        <p className="home__instruction heading-2">Click the Door</p>
         <SvgIcon
           name="corner-right-down"
           color="#8d8479"

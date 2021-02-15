@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
-import { createMealPlan } from '../../../actions/mealActions';
+import {
+  createMealPlan,
+  getWeeklyPlanner,
+  getMealPlanner,
+} from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealPlannerForm = ({ week }) => {
@@ -27,22 +31,29 @@ const MealPlannerForm = ({ week }) => {
     });
   };
 
-  const addInput = (type) => (e) => {
+  const addIngredient = (e) => {
     e.preventDefault();
 
-    if (type === 'ingredients') {
+    if (ingredient) {
       setMealPlan({
         ...mealPlan,
         ['ingredients']: [...ingredients, ingredient],
       });
-    } else if (type === 'tags') {
+    }
+
+    setIngredient('');
+  };
+
+  const addTag = (e) => {
+    e.preventDefault();
+
+    if (tag) {
       setMealPlan({
         ...mealPlan,
         ['tags']: [...tags, tag],
       });
     }
 
-    setIngredient('');
     setTag('');
   };
 
@@ -59,6 +70,18 @@ const MealPlannerForm = ({ week }) => {
         photo,
       })
     );
+
+    setMealPlan({
+      name: '',
+      photo: '',
+      type: '',
+      tags: [],
+      ingredients: [],
+      createdAt: '',
+    });
+
+    dispatch(getWeeklyPlanner(week[0]));
+    dispatch(getMealPlanner());
   };
 
   return (
@@ -102,13 +125,15 @@ const MealPlannerForm = ({ week }) => {
               value={createdAt}
               onChange={changeForMealPlan}
             >
-              {week.map((date) => {
-                return (
-                  <option key={date} value={date}>
-                    {date}
-                  </option>
-                );
-              })}
+              <option value="select">Select...</option>
+              {week &&
+                week.map((date) => {
+                  return (
+                    <option key={date} value={date}>
+                      {date}
+                    </option>
+                  );
+                })}
             </select>
           </div>
 
@@ -136,7 +161,7 @@ const MealPlannerForm = ({ week }) => {
                 ></input>
                 <button
                   className="planner__form-inputAdd"
-                  onClick={addInput('ingredients')}
+                  onClick={addIngredient}
                 >
                   <SvgIcon
                     name="plus-alt"
@@ -163,10 +188,7 @@ const MealPlannerForm = ({ week }) => {
                   onChange={(e) => setTag(e.target.value)}
                   placeholder="Tags"
                 ></input>
-                <button
-                  className="planner__form-inputAdd"
-                  onClick={addInput('tags')}
-                >
+                <button className="planner__form-inputAdd" onClick={addTag}>
                   <SvgIcon
                     name="plus-alt"
                     color="#999"

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MealPlannerItem = ({ day, index }) => {
+const MealPlannerItem = ({ day }) => {
   const mealPlanLayout = (i) => {
     // const mealPlans;
   };

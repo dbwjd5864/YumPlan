@@ -48,10 +48,19 @@ exports.createMealPlan = async (req, res) => {
   if (!req.body.user) {
     req.body.user = req.user._id;
   }
+  const { name, ingredients, type, tags, photo, createdAt, user } = req.body;
+
+  const mealFields = {};
+  if (name) mealFields.name = name;
+  if (ingredients) mealFields.ingredients = ingredients;
+  if (type) mealFields.type = type;
+  if (tags) mealFields.tags = tags;
+  if (photo) mealFields.photo = photo;
+  if (createdAt) mealFields.createdAt = createdAt;
+  if (user) mealFields.user = req.user._id;
 
   try {
-    console.log(req.body);
-    const newPlan = await Meal.create(req.body);
+    const newPlan = await Meal.create(mealFields);
 
     res.status(201).json({
       status: 'success',

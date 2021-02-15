@@ -3,11 +3,9 @@ import MealPlannerForm from './MealPlannerForm';
 import MealPlannerItem from './MealPlannerItem';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getMealPlanner } from '../../../actions/mealActions';
+import { getMealPlanner, getWeeklyPlanner } from '../../../actions/mealActions';
 
 const MealPlanner = () => {
-  const { mealPlans } = useSelector((state) => state.meals);
-
   const day = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 
   const [week, setWeek] = useState([]);
@@ -19,6 +17,10 @@ const MealPlanner = () => {
     setWeekly();
   }, []);
 
+  useEffect(() => {
+    dispatch(getWeeklyPlanner(week[0]));
+  }, [week]);
+
   const setWeekly = () => {
     let today = new Date();
     let weekly = [];
@@ -26,10 +28,16 @@ const MealPlanner = () => {
     for (let i = 1; i <= 7; i++) {
       let firstDate = today.getDate() - today.getDay() + i;
 
-      let date = new Date(today.setDate(firstDate))
-        .toISOString()
-        .slice(0, 10)
-        .toString();
+      let date = new Date(today.setDate(firstDate));
+      date = (
+        date.getFullYear() +
+        '-' +
+        ((date.getMonth() + 1 + '').length === 1
+          ? '0' + (date.getMonth() + 1)
+          : date.getMonth() + 1) +
+        '-' +
+        date.getDate()
+      ).toString();
 
       weekly.push(date);
     }
@@ -43,10 +51,10 @@ const MealPlanner = () => {
       </div>
       <div className="planner__container">
         <MealPlannerForm week={week} />
-        {day.map((day, index) => {
+        {day.map((day) => {
           return (
             <div key={day} className="planner__item">
-              <MealPlannerItem day={day} index={index} />
+              <MealPlannerItem day={day} />
             </div>
           );
         })}
