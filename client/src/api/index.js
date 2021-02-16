@@ -17,6 +17,9 @@ const mealUrl = '/api/v1/meal';
 
 export const getAllMeals = () => axios.get(`${mealUrl}`);
 
+export const updateLikeCount = (mealId, updateLike) =>
+  axios.patch(`${mealUrl}/${mealId}?like=${updateLike}`);
+
 export const getMealPlanner = () => axios.get(`${mealUrl}/planner`);
 
 export const getWeeklyPlanner = (week) =>

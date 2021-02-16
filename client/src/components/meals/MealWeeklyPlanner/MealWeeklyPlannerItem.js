@@ -9,7 +9,7 @@ import {
   setCurrentMealPlan,
 } from '../../../actions/mealActions';
 
-const MealPlannerItem = ({ day, index }) => {
+const MealWeeklyPlannerItem = ({ day, index }) => {
   const { weeklyPlans } = useSelector((state) => state.meals);
   const dispatch = useDispatch();
 
@@ -98,4 +98,4 @@ const MealPlannerItem = ({ day, index }) => {
   );
 };
 
-export default MealPlannerItem;
+export default MealWeeklyPlannerItem;

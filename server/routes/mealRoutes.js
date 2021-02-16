@@ -5,6 +5,7 @@ const mealController = require('../controllers/mealController.js');
 const router = express.Router();
 
 router.get('/', mealController.getAllMeals);
+router.patch('/:mealId', mealController.increaseLike);
 
 // Protect router
 router.use(auth);

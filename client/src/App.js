@@ -10,6 +10,7 @@ import Meal from './components/meals/Meals';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import MealPlanner from './components/meals/MealPlanner/MealPlanner';
+import MealWeeklyPlanner from './components/meals/MealWeeklyPlanner/MealWeeklyPlanner';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 
@@ -30,6 +31,11 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/meal" component={Meal} />
           <PrivateRoute exact path="/meal/planner" component={MealPlanner} />
+          <PrivateRoute
+            exact
+            path="/meal/planner/weekly-plan"
+            component={MealWeeklyPlanner}
+          />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />

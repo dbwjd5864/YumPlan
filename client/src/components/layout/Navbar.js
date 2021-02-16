@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/userActions';
@@ -8,6 +8,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   const onLogout = () => {
     dispatch(logout());
@@ -42,6 +44,19 @@ const Navbar = () => {
     );
   };
 
+  const plannerSubMenu = () => {
+    return (
+      <ul className="nav__submenu">
+        <li className="nav__submenu-item ">
+          <Link to="/meal/planner">Show all</Link>
+        </li>
+        <li className="nav__submenu-item ">
+          <Link to="/meal/planner/weekly-plan">Weekly Planner</Link>
+        </li>
+      </ul>
+    );
+  };
+
   return (
     <header className="navigation">
       <h1 className="navigation__header">
@@ -57,11 +72,17 @@ const Navbar = () => {
             <li className="nav__meal-item">
               <Link to="/meal">Meals</Link>
             </li>
-            <li className="nav__meal-item">
-              <Link to="/meal/planner">Planner</Link>
+            <li
+              className="nav__meal-item"
+              onMouseLeave={() => setShowMenu(false)}
+            >
+              <Link to="/meal/planner" onMouseEnter={() => setShowMenu(true)}>
+                Planner
+              </Link>
+              {showMenu && plannerSubMenu()}
             </li>
             <li className="nav__meal-item">
-              <Link to="/meal/favorite/">Favorite</Link>
+              <Link to="/meal/favorite">Favorite</Link>
             </li>
           </ul>
         ) : (

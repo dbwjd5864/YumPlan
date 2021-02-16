@@ -20,6 +20,53 @@ exports.getAllMeals = async (req, res) => {
   }
 };
 
+// @route     PATCH api/v1/meal/:mealId
+// @desc      Increase like count
+// @access    Public
+exports.increaseLike = async (req, res) => {
+  const likeStatus = req.query.like;
+  console.log(likeStatus);
+
+  try {
+    const mealPlan = await Meal.findById(req.params.mealId);
+    let updatedMeal;
+
+    if (!mealPlan) {
+      return res.status(404).json({
+        msg: 'No Meal found with that ID',
+      });
+    }
+
+    if (likeStatus === 'like') {
+      updatedMeal = await Meal.findByIdAndUpdate(
+        req.params.mealId,
+        { likeCount: mealPlan.likeCount + 1 },
+        { new: true }
+      );
+    } else if (likeStatus == 'unlike') {
+      updatedMeal = await Meal.findByIdAndUpdate(
+        req.params.mealId,
+        { likeCount: mealPlan.likeCount - 1 },
+        { new: true }
+      );
+    }
+
+    res.status(200).json({
+      status: 'success',
+      updatedMeal,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
+// @route     GET api/v1/meal/favorite
+// @desc      GET all Favorite meal plans
+// @access    Private
+
 // @route     GET api/v1/meal/planner
 // @desc      Show Meal Planner
 // @access    Private

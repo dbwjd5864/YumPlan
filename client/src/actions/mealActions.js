@@ -13,6 +13,22 @@ export const getAllMeals = () => async (dispatch) => {
   }
 };
 
+export const updateLikeCount = (mealId, likeStatus) => async (dispatch) => {
+  try {
+    const { data } = await api.updateLikeCount(mealId, likeStatus);
+
+    dispatch({
+      type: 'UPDATE_LIKECOUNT_SUCCESS',
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: 'UPDATE_LIKECOUNT_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
 export const getMealPlanner = () => async (dispatch) => {
   try {
     const { data } = await api.getMealPlanner();

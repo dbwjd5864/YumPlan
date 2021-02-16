@@ -8,7 +8,7 @@ import {
 } from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
-const MealPlannerForm = ({ week }) => {
+const MealWeeklyPlannerForm = ({ week }) => {
   const dispatch = useDispatch();
   const { currentMealPlan } = useSelector((state) => state.meals);
 
@@ -268,4 +268,4 @@ const MealPlannerForm = ({ week }) => {
   );
 };
 
-export default MealPlannerForm;
+export default MealWeeklyPlannerForm;

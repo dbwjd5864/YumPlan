@@ -1,29 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateLikeCount } from '../../actions/mealActions';
 import defaultImg from '../../img/spoon.png';
 import SvgIcon from '../layout/SvgIcon';
 
 const MealItem = ({ meal }) => {
-  const { name, ingredients, tags, photo, likeCount, user, createdAt } = meal;
+  const [likeStatus, setLikeStatus] = useState();
+  const dispatch = useDispatch();
+  const {
+    name,
+    ingredients,
+    tags,
+    photo,
+    likeCount,
+    user,
+    createdAt,
+    _id,
+  } = meal;
+
+  useEffect(() => {
+    if (likeStatus) {
+      dispatch(updateLikeCount(_id, likeStatus));
+    }
+  }, [likeStatus]);
+
+  const changeLikeBtn = (e) => {
+    e.preventDefault();
+
+    if (likeStatus === undefined || likeStatus === 'unlike') {
+      setLikeStatus('like');
+    } else {
+      setLikeStatus('unlike');
+    }
+  };
 
   return (
     <div className="meal__item">
       <div className="meal__item-like">
-        <button className="meal__item-likeBtn" onClick={() => {}}>
-          <SvgIcon
-            name="heart"
-            color="#eb9f9f"
-            width="2.1rem"
-            height="2.1rem"
-          />{' '}
+        <button className="meal__item-likeBtn" onClick={changeLikeBtn}>
+          {likeStatus === undefined || likeStatus === 'unlike' ? (
+            <SvgIcon
+              name="heart-outlined"
+              color="#eb9f9f"
+              width="2.1rem"
+              height="2.1rem"
+            />
+          ) : (
+            <SvgIcon
+              name="heart"
+              color="#eb9f9f"
+              width="2.1rem"
+              height="2.1rem"
+            />
+          )}
         </button>
         <p className="meal__item-likeCount">{likeCount}</p>
       </div>
       <div className="meal__item-name heading-2">{name}</div>
-      <img
-        className="meal__item-img"
-        src={photo === 'spoon.png' ? defaultImg : photo}
-        alt={name}
-      />
+      <div className="meal__item-imgContainer">
+        <img
+          className="meal__item-img"
+          src={photo === 'spoon.png' ? defaultImg : photo}
+          alt={name}
+        />
+        <button className="meal__item-addBtn" onClick={() => {}}>
+          <SvgIcon
+            name="add-to-list"
+            color="#8d8479"
+            width="2.2rem"
+            height="2.2rem"
+          />
+        </button>
+      </div>
       <div className="meal__item-userInfo">
         <p className="meal__userInfo-user">{user.name}</p>
         <p className="meal__userInfo-createdAt">

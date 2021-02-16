@@ -177,10 +177,8 @@ select {
   color: #fff;
   background-color: var(--text-color);
   border-radius: 10px;
-  border-style: 15px dashed red;
   padding: 1rem 1.2rem;
   display: flex;
-  justify-content: center;
   position: absolute;
   width: 80%;
   top: 8rem;
@@ -211,9 +209,56 @@ select {
   justify-content: space-evenly;
 }
 
+.nav__meal-item {
+  position: relative;
+}
+
 .nav__meal-item > a {
   color: #fff;
   font-size: 2.5rem;
+  display: inline-block;
+  height: 100%;
+}
+
+.nav__submenu {
+  width: max-content;
+  position: absolute;
+  top: 5rem;
+  left: -5rem;
+}
+.nav__submenu-item {
+  margin: 1rem;
+  background-color: var(--text-color);
+  border-radius: 5px;
+  padding: 0.4rem 0.8rem;
+  position: relative;
+}
+
+.nav__submenu-item > a {
+  color: #fff;
+  font-size: 2.2rem;
+  padding: 1rem 1.2rem;
+}
+
+.nav__submenu-item:before {
+  content: '\\';
+  position: absolute;
+  top: -50px;
+  left: 23px;
+  font-size: 5rem;
+  color: var(--text-color);
+  transform: scale(1rem);
+  z-index: -1;
+}
+
+.nav__submenu-item:after {
+  content: '/';
+  position: absolute;
+  top: -50px;
+  right: 23px;
+  font-size: 5rem;
+  color: var(--text-color);
+  z-index: -1;
 }
 
 /* Sign Up && Log In */
@@ -392,6 +437,17 @@ select {
 .meal__item-likeBtn {
   margin-left: 0.3rem;
   display: flex;
+  background-color: transparent;
+}
+
+.meal__item-imgContainer {
+  position: relative;
+}
+
+.meal__item-addBtn {
+  position: absolute;
+  right: 1rem;
+  bottom: 2.2rem;
   background-color: transparent;
 }
 
@@ -691,4 +747,10 @@ input[type='file']::before {
   cursor: pointer;
   text-shadow: 1px 1px #fff;
   font-weight: 700;
+}
+
+/* Show all MealPlanner */
+.mealPlanner {
+  width: 110rem;
+  margin: 18rem 0;
 }

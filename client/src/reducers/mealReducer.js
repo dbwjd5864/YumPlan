@@ -83,6 +83,17 @@ export default (state = initialState, action) => {
         loading: false,
       };
     }
+    case 'UPDATE_LIKECOUNT_SUCCESS': {
+      return {
+        ...state,
+        meals: state.meals.map((meal) =>
+          meal._id === action.payload.updatedMeal._id
+            ? action.payload.updatedMeal
+            : meal
+        ),
+        loading: false,
+      };
+    }
     case 'DELETE_MEALPLAN_SUCCESS': {
       return {
         ...state,
