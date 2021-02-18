@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import MealFilter from './MealFilter';
 import MealItem from './MealItem';
 
-import { getAllMeals } from '../../actions/mealActions';
+import {
+  getAllMeals,
+  getAllFavorites,
+  getMealPlanner,
+  setWeekly,
+} from '../../actions/mealActions';
 
 const Meal = () => {
   const { meals, filtered } = useSelector((state) => state.meals);
@@ -11,6 +16,9 @@ const Meal = () => {
 
   useEffect(() => {
     dispatch(getAllMeals());
+    dispatch(getAllFavorites());
+    dispatch(getMealPlanner());
+    dispatch(setWeekly());
   }, [dispatch]);
 
   return (

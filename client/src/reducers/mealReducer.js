@@ -2,9 +2,11 @@ const initialState = {
   meals: null,
   mealPlans: null,
   weeklyPlans: null,
+  favorites: null,
   currentMealPlan: null,
   loading: true,
   filtered: null,
+  weekly: null,
   error: null,
 };
 
@@ -16,23 +18,30 @@ export default (state = initialState, action) => {
         meals: action.payload.meals,
         loading: false,
       };
-    case 'FETCH_MEALPLAN_SUCCESS': {
+    case 'FETCH_MEALPLAN_SUCCESS':
       return {
         ...state,
         mealPlans: action.payload.mealPlans.mealPlan,
         loading: false,
       };
-    }
-    case 'FETCH_WEEKLYPLAN_SUCCESS': {
+    case 'FETCH_WEEKLYPLAN_SUCCESS':
       return {
         ...state,
         weeklyPlans: action.payload.weeklyPlan,
         loading: false,
       };
-    }
+
+    case 'FETCH_FAVORITES_SUCCESS':
+      return {
+        ...state,
+        favorites: action.payload.favorites,
+        loading: false,
+      };
+
     case 'FETCH_MEALS_FAIL':
     case 'FETCH_MEALPLAN_FAIL':
     case 'FETCH_WEEKLYPLAN_FAIL':
+    case 'FETCH_FAVORITES_FAIL':
       return {
         loading: false,
         error: action.payload,
@@ -49,6 +58,12 @@ export default (state = initialState, action) => {
         ...state,
         filtered: null,
       };
+    case 'SET_WEEKLY_SUCCESS':
+      return {
+        ...state,
+        weekly: action.payload,
+      };
+
     case 'CREATE_MEALPLAN_SUCCESS':
       return {
         ...state,
@@ -57,10 +72,20 @@ export default (state = initialState, action) => {
         mealPlans: [...state.mealPlans, action.payload.mealPlan],
       };
     case 'CREATE_MEALPLAN_FAIL':
+    case 'UPDATE_MEALPLAN_FAIL':
+    case 'DELETE_MEALPLAN_FAIL':
+    case 'UPDATE_LIKECOUNT_FAIL':
+    case 'ADD_FAVORITE_FAIL':
       return {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case 'ADD_FAVORITE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        favorites: [...state.favorites, action.payload.favorite.favorites[0]],
       };
     case 'UPDATE_MEALPLAN_SUCCESS': {
       return {

@@ -21,6 +21,12 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    favorites: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Meal',
+      },
+    ],
   },
   {
     toJSON: { virtuals: true },

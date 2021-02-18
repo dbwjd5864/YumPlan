@@ -62,14 +62,6 @@ export const createMealPlan = (mealPlan) => async (dispatch) => {
   }
 };
 
-export const filterMeals = (search) => async (dispatch) => {
-  dispatch({ type: 'FILTER_MEALS', payload: search });
-};
-
-export const clearFilter = () => async (dispatch) => {
-  dispatch({ type: 'CLEAR_FILTER' });
-};
-
 export const updateMealPlan = (mealId, mealPlan) => async (dispatch) => {
   try {
     const { data } = await api.updateMealPlan(mealId, mealPlan);
@@ -96,6 +88,40 @@ export const deleteMealPlan = (mealId) => async (dispatch) => {
   }
 };
 
+export const getAllFavorites = () => async (dispatch) => {
+  try {
+    const { data } = await api.getAllFavorites();
+
+    dispatch({ type: 'FETCH_FAVORITES_SUCCESS', payload: data });
+  } catch (err) {
+    dispatch({
+      type: 'FETCH_FAVORITES_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
+export const addFavorite = (mealId) => async (dispatch) => {
+  try {
+    const { data } = await api.addFavorite(mealId);
+
+    dispatch({ type: 'ADD_FAVORITE_SUCCESS', payload: data });
+  } catch (err) {
+    dispatch({
+      type: 'ADD_FAVORITE_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
+export const filterMeals = (search) => async (dispatch) => {
+  dispatch({ type: 'FILTER_MEALS', payload: search });
+};
+
+export const clearFilter = () => async (dispatch) => {
+  dispatch({ type: 'CLEAR_FILTER' });
+};
+
 export const setCurrentMealPlan = (mealPlan) => async (dispatch) => {
   dispatch({
     type: 'SET_CURRENT_MEALPLAN',
@@ -107,4 +133,28 @@ export const clearCurrentMealPlan = () => async (dispatch) => {
   dispatch({
     type: 'CLEAR_CURRENT_MEALPLAN',
   });
+};
+
+export const setWeekly = () => async (dispatch) => {
+  let today = new Date();
+  let weekly = [];
+
+  for (let i = 1; i <= 7; i++) {
+    let firstDate = today.getDate() - today.getDay() + i;
+
+    let date = new Date(today.setDate(firstDate));
+    date = (
+      date.getFullYear() +
+      '-' +
+      ((date.getMonth() + 1 + '').length === 1
+        ? '0' + (date.getMonth() + 1)
+        : date.getMonth() + 1) +
+      '-' +
+      date.getDate()
+    ).toString();
+
+    weekly.push(date);
+  }
+
+  dispatch({ type: 'SET_WEEKLY_SUCCESS', payload: weekly });
 };

@@ -82,7 +82,7 @@ const Navbar = () => {
               {showMenu && plannerSubMenu()}
             </li>
             <li className="nav__meal-item">
-              <Link to="/meal/favorite">Favorite</Link>
+              <Link to="/meal/favorites">Favorite</Link>
             </li>
           </ul>
         ) : (

@@ -5,10 +5,14 @@ const mealController = require('../controllers/mealController.js');
 const router = express.Router();
 
 router.get('/', mealController.getAllMeals);
-router.patch('/:mealId', mealController.increaseLike);
+router.patch('/:mealId', mealController.updateLike);
 
 // Protect router
 router.use(auth);
+
+router.get('/favorites', mealController.getFavorites);
+router.patch('/:mealId/favorites', mealController.addFavorite);
+
 router
   .route('/planner')
   .get(mealController.getPlanner)

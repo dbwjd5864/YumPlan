@@ -236,3 +236,129 @@ exports.deleteMealPlan = async (req, res) => {
     });
   }
 };
+
+// @route     PATCH api/v1/meal/:mealId
+// @desc      Update like count
+// @access    Public
+exports.updateLike = async (req, res) => {
+  const likeStatus = req.query.like;
+  console.log(likeStatus);
+
+  try {
+    const mealPlan = await Meal.findById(req.params.mealId);
+    let updatedMeal;
+
+    if (!mealPlan) {
+      return res.status(404).json({
+        msg: 'No Meal found with that ID',
+      });
+    }
+
+    if (likeStatus === 'like') {
+      updatedMeal = await Meal.findByIdAndUpdate(
+        req.params.mealId,
+        { likeCount: mealPlan.likeCount + 1 },
+        { new: true }
+      );
+    } else if (likeStatus == 'unlike') {
+      updatedMeal = await Meal.findByIdAndUpdate(
+        req.params.mealId,
+        { likeCount: mealPlan.likeCount - 1 },
+        { new: true }
+      );
+    }
+
+    res.status(200).json({
+      status: 'success',
+      updatedMeal,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
+// @route     GET api/v1/meal/favorite
+// @desc      GET all Favorite meal plans
+// @access    Private
+
+// @route     GET api/v1/meal/planner
+// @desc      Show Meal Planner
+// @access    Private
+exports.getPlanner = async (req, res) => {
+  try {
+    const mealPlans = await User.findById(req.user._id)
+      .select({ mealPlan: 1 })
+      .populate('mealPlan');
+
+    res.status(200).json({
+      status: 'success',
+      mealPlans,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
+// @route     GET api/v1/meal/favorites
+// @desc      Get all favorites
+// @access    Private
+exports.getFavorites = async (req, res) => {
+  try {
+    const favorites = await User.findById(req.user._id)
+      .select({ favorites: 1 })
+      .populate('favorites');
+
+    res.status(200).json({
+      status: 'success',
+      favorites: favorites.favorites,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
+
+// @route     PATCH api/v1/meal/:mealId/favorites
+// @desc      Add meal to favorite
+// @access    Private
+exports.addFavorite = async (req, res) => {
+  try {
+    const meal = await Meal.findById(req.params.mealId);
+
+    if (!meal) {
+      return res.status(404).json({
+        msg: 'No Meal found with that ID',
+      });
+    }
+
+    const favorite = await User.findByIdAndUpdate(
+      req.user._id,
+      { $push: { favorites: meal._id } },
+      { new: true }
+    )
+      .populate('favorites')
+      .select({ name: 0, email: 0, date: 0, __v: 0 })
+      .slice('favorites', -1);
+
+    console.log(favorite);
+
+    res.status(200).json({
+      status: 'success',
+      favorite,
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};

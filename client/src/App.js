@@ -9,6 +9,7 @@ import About from './components/pages/About';
 import Meal from './components/meals/Meals';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
+import MealFavorites from './components/meals/MealFavorite/MealFavorites';
 import MealPlanner from './components/meals/MealPlanner/MealPlanner';
 import MealWeeklyPlanner from './components/meals/MealWeeklyPlanner/MealWeeklyPlanner';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -30,6 +31,11 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/meal" component={Meal} />
+          <PrivateRoute
+            exact
+            path="/meal/favorites"
+            component={MealFavorites}
+          />
           <PrivateRoute exact path="/meal/planner" component={MealPlanner} />
           <PrivateRoute
             exact

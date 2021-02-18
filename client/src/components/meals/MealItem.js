@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateLikeCount } from '../../actions/mealActions';
+import { updateLikeCount, addFavorite } from '../../actions/mealActions';
 import defaultImg from '../../img/spoon.png';
 import SvgIcon from '../layout/SvgIcon';
 
@@ -56,14 +56,19 @@ const MealItem = ({ meal }) => {
         </button>
         <p className="meal__item-likeCount">{likeCount}</p>
       </div>
-      <div className="meal__item-name heading-2">{name}</div>
+      <h4 className="meal__item-name heading-2">{name}</h4>
       <div className="meal__item-imgContainer">
         <img
           className="meal__item-img"
           src={photo === 'spoon.png' ? defaultImg : photo}
           alt={name}
         />
-        <button className="meal__item-addBtn" onClick={() => {}}>
+        <button
+          className="meal__item-addBtn"
+          onClick={() => {
+            dispatch(addFavorite(_id));
+          }}
+        >
           <SvgIcon
             name="add-to-list"
             color="#8d8479"

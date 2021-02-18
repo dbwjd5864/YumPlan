@@ -147,7 +147,7 @@ select {
   background-image: url(./img/waves.svg);
   background-size: contain;
   background-repeat: repeat-x;
-  z-index: 1;
+  z-index: 2;
 }
 
 .navigation__header {
@@ -179,11 +179,13 @@ select {
   border-radius: 10px;
   padding: 1rem 1.2rem;
   display: flex;
+  justify-content: center;
   position: absolute;
   width: 80%;
   top: 8rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
 }
 
 .nav__background::before {
@@ -193,7 +195,6 @@ select {
   left: 23px;
   font-size: 8rem;
   color: var(--text-color);
-  transform: scale(1rem);
 }
 
 .nav__background::after {
@@ -354,7 +355,7 @@ select {
 
 /* Meal */
 .meal {
-  width: 90rem;
+  width: 110rem;
   margin: 20rem 0 8rem;
 }
 
@@ -750,7 +751,34 @@ input[type='file']::before {
 }
 
 /* Show all MealPlanner */
-.mealPlanner {
+.myMeals {
   width: 110rem;
   margin: 18rem 0;
+}
+
+.myMeals__container {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+}
+
+.myMeals__item {
+  width: 80%;
+  justify-self: center;
+  box-shadow: 2px 2px 5px 1px var(--grey-light);
+
+  display: flex;
+}
+
+.myMeals__item:nth-child(even) > .myMeals__item-imgContainer {
+  justify-self: flex-end;
+}
+
+.myMeals__item-img {
+  max-width: 30rem;
+}
+
+.myMeals__item-group {
+  display: flex;
+  flex-direction: column;
 }
