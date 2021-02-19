@@ -4,27 +4,38 @@ import { useSelector } from 'react-redux';
 import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
-const MealPlannerItem = () => {
-  const { mealPlans } = useSelector((state) => state.meals);
+const MealFavoritesItem = () => {
+  const { favorites } = useSelector((state) => state.meals);
 
   return (
-    mealPlans &&
-    mealPlans.map((mealPlan) => {
+    favorites &&
+    favorites.map((favorite) => {
       return (
-        <div className="myMeals__item" key={mealPlan._id}>
-          <div className="myMeals__item-imgContainer">
+        <div className="favorites__item" key={favorite._id}>
+          <div className="favorites__item-imgContainer">
+            <div className="favorites__item-overlay"></div>
             <img
-              className="myMeals__item-img"
-              src={mealPlan.photo === 'spoon.png' ? defaultImg : mealPlan.photo}
-              alt={mealPlan.name}
+              className="favorites__item-img"
+              src={favorite.photo === 'spoon.png' ? defaultImg : favorite.photo}
+              alt={favorite.name}
             />
+
+            <p className="favorites__item-likeCount hovered">
+              <SvgIcon
+                name="heart"
+                color="#eb9f9f"
+                width="2.1rem"
+                height="2.1rem"
+              />
+              {favorite.likeCount}
+            </p>
           </div>
           <div className="myMeals__item-group">
-            <h4 className="myMeals__item-name heading-2">{mealPlan.name}</h4>
+            <h4 className="myMeals__item-name heading-2">{favorite.name}</h4>
 
             <div className="myMeals__item-info">
               <p className="myMeals__info-createdAt">
-                {new Date(mealPlan.createdAt).toLocaleDateString([], {
+                {new Date(favorite.createdAt).toLocaleDateString([], {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -33,7 +44,7 @@ const MealPlannerItem = () => {
             </div>
 
             <div className="myMeals__item-ingredients">
-              {mealPlan.ingredients.map((ingredient, index) => (
+              {favorite.ingredients.map((ingredient, index) => (
                 <span key={index}>
                   <SvgIcon
                     name="triangle-right"
@@ -46,7 +57,7 @@ const MealPlannerItem = () => {
               ))}
             </div>
             <div className="myMeals__item-tags">
-              {mealPlan.tags.length > 0 ? (
+              {favorite.tags.length > 0 ? (
                 <SvgIcon
                   name="tag"
                   color="#999"
@@ -55,7 +66,7 @@ const MealPlannerItem = () => {
                 />
               ) : null}
               <p className="myMeals__tags-container">
-                {mealPlan.tags.map((tag, index) => (
+                {favorite.tags.map((tag, index) => (
                   <span key={index}>#{tag} &nbsp;</span>
                 ))}
               </p>
@@ -67,4 +78,4 @@ const MealPlannerItem = () => {
   );
 };
 
-export default MealPlannerItem;
+export default MealFavoritesItem;

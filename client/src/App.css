@@ -3,7 +3,7 @@
 
 /* Variables */
 :root {
-  --primary-color: #f3eee0;
+  --primary-color: rgb(243, 238, 224);
   --secondary-color: #f1bbba;
   --secondary-color-2: #eb9f9f;
 
@@ -759,7 +759,8 @@ input[type='file']::before {
 .myMeals__container {
   display: grid;
   gap: 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(60rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(55rem, 1fr));
+  grid-auto-rows: 30rem;
 }
 
 .myMeals__item {
@@ -767,18 +768,131 @@ input[type='file']::before {
   justify-self: center;
   box-shadow: 2px 2px 5px 1px var(--grey-light);
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 30rem;
+  justify-items: center;
+}
+
+.myMeals__item-imgContainer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(243, 238, 224, 0.5);
 }
 
 .myMeals__item:nth-child(even) > .myMeals__item-imgContainer {
-  justify-self: flex-end;
+  grid-row: 1;
+  grid-column: 2 / -1;
 }
 
 .myMeals__item-img {
-  max-width: 30rem;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .myMeals__item-group {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
+}
+
+.myMeals__item-name {
+  margin: 1.5rem 0 1rem;
+  text-shadow: 2px 2px var(--primary-color);
+  letter-spacing: 0.1rem;
+}
+
+.myMeals__item-info {
+  font-size: 1.35rem;
+  margin-left: auto;
+}
+
+.myMeals__item-ingredients {
+  flex: 1;
+}
+
+.myMeals__item-ingredients {
+  font-size: 1.5rem;
+  width: 80%;
+  line-height: 3rem;
+  margin: 1.2rem 0;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+.myMeals__item-ingredients > span {
+  display: block;
+}
+
+.myMeals__item-tags {
+  margin-bottom: 0.5rem;
+  display: flex;
+  width: 100%;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.myMeals__tags-container {
+  font-size: 1.25rem;
+  margin-left: 0.8rem;
+}
+
+/* Favorites */
+.favorites {
+  width: 110rem;
+  margin: 20rem 0 8rem;
+}
+
+.favorites__container {
+  display: grid;
+  margin: auto;
+  width: 90%;
+
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-auto-rows: 30rem;
+  gap: 3rem;
+}
+
+.favorites__item {
+  width: 100%;
+  justify-self: center;
+  height: 100%;
+}
+
+.favorites__item:hover .favorites__item-likeCount {
+  display: block;
+}
+
+.favorites__item-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.favorites__item:hover .favorites__item-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.favorites__item-imgContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.favorites__item-likeCount {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+}
+
+.favorites__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

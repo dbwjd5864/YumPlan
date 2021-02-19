@@ -5,12 +5,13 @@ import {
   createMealPlan,
   updateMealPlan,
   clearCurrentMealPlan,
+  getWeeklyPlanner,
 } from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealWeeklyPlannerForm = ({ week }) => {
   const dispatch = useDispatch();
-  const { currentMealPlan } = useSelector((state) => state.meals);
+  const { currentMealPlan, weekly } = useSelector((state) => state.meals);
 
   useEffect(() => {
     if (currentMealPlan !== null) {
@@ -109,6 +110,8 @@ const MealWeeklyPlannerForm = ({ week }) => {
       ingredients: [],
       createdAt: '',
     });
+
+    dispatch(getWeeklyPlanner(weekly[0]));
   };
 
   return (
