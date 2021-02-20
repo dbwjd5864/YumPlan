@@ -60,6 +60,10 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
 
                 <h2 className="planner__item-name heading2">{plan.name}</h2>
 
+                <p className="planner__item-createdAt">
+                  {plan.createdAt.split('T')[0]}
+                </p>
+
                 <div className="planner__item-ingredients">
                   Ingredients:{' '}
                   {plan.ingredients.map((ingredient, index) => (

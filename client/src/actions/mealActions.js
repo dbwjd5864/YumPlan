@@ -135,9 +135,14 @@ export const clearCurrentMealPlan = () => async (dispatch) => {
   });
 };
 
+export const clearWeeklyPlanner = () => async (dispatch) => {
+  dispatch({
+    type: 'CLEAR_WEEKLY_PLANNER',
+  });
+};
+
 export const setWeekly = (setDate) => async (dispatch) => {
   let today;
-  console.log(setDate);
   let weekly = [];
 
   if (setDate === '') {
@@ -160,7 +165,7 @@ export const setWeekly = (setDate) => async (dispatch) => {
       weekly.push(date);
     }
   } else {
-    today = setDate;
+    today = new Date(setDate);
 
     for (let i = 1; i <= 7; i++) {
       let firstDate = today.getDate() - today.getDay() + i;
@@ -173,7 +178,9 @@ export const setWeekly = (setDate) => async (dispatch) => {
           ? '0' + (date.getMonth() + 1)
           : date.getMonth() + 1) +
         '-' +
-        date.getDate()
+        ((date.getDate() + '').length === 1
+          ? '0' + date.getDate()
+          : date.getDate())
       ).toString();
 
       weekly.push(date);

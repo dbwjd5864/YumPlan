@@ -79,13 +79,7 @@ const MealItem = ({ meal }) => {
       </div>
       <div className="meal__item-userInfo">
         <p className="meal__userInfo-user">{user.name}</p>
-        <p className="meal__userInfo-createdAt">
-          {new Date(createdAt).toLocaleDateString([], {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </p>
+        <p className="meal__userInfo-createdAt">{createdAt.split('T')[0]}</p>
       </div>
       <div className="meal__item-ingredients">
         Ingredients:{' '}

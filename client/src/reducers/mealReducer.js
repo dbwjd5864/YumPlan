@@ -53,6 +53,12 @@ export default (state = initialState, action) => {
           return meal.name.toLowerCase().includes(action.payload.toLowerCase());
         }),
       };
+    case 'CLEAR_WEEKLY_PLANNER':
+      return {
+        ...state,
+        weeklyPlans: null,
+        loading: false,
+      };
     case 'CLEAR_FILTER':
       return {
         ...state,

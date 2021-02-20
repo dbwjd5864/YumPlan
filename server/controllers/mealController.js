@@ -125,8 +125,9 @@ exports.createMealPlan = async (req, res) => {
 // @desc      Get the weekly meal plan
 // @access    Private
 exports.getWeeklyPlan = async (req, res) => {
-  const startDate = req.params.week; // 2021-02-08
-  const endDate = new Date().setDate(startDate.split('-')[2] + 7);
+  const startDate = new Date(req.params.week); // 2021-02-08
+  let endDate = new Date(startDate);
+  endDate = endDate.setDate(startDate.getDate() + 7);
   const userId = req.user._id;
 
   try {
@@ -138,7 +139,7 @@ exports.getWeeklyPlan = async (req, res) => {
             {
               createdAt: {
                 $gte: new Date(startDate),
-                $lte: new Date(endDate),
+                $lt: new Date(endDate),
               },
             },
           ],
@@ -280,10 +281,6 @@ exports.updateLike = async (req, res) => {
     });
   }
 };
-
-// @route     GET api/v1/meal/favorite
-// @desc      GET all Favorite meal plans
-// @access    Private
 
 // @route     GET api/v1/meal/planner
 // @desc      Show Meal Planner

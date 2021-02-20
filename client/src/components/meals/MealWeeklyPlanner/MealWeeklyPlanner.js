@@ -3,29 +3,34 @@ import MealWeeklyPlannerForm from './MealWeeklyPlannerForm';
 import MealWeeklyPlannerItem from './MealWeeklyPlannerItem';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { getWeeklyPlanner, setWeekly } from '../../../actions/mealActions';
+import {
+  getWeeklyPlanner,
+  setWeekly,
+  clearWeeklyPlanner,
+} from '../../../actions/mealActions';
 
 const MealWeeklyPlanner = () => {
   const day = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun'];
 
-  const { weekly } = useSelector((state) => state.meals);
+  const { weekly, mealPlans } = useSelector((state) => state.meals);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getWeeklyPlanner(weekly[0]));
-  }, []);
+  }, [weekly, mealPlans]);
 
-  const changeWeek = (status) => async (e) => {
+  const changeWeek = (status) => (e) => {
     e.preventDefault();
-    let prevWeek = new Date(weekly[0]);
-    let nextWeek = new Date(weekly[weekly.length - 1]);
+    dispatch(clearWeeklyPlanner());
 
     if (status === 'prev') {
-      await dispatch(setWeekly(prevWeek.getDate()));
-      dispatch(getWeeklyPlanner(weekly[0]));
+      let prevWeek = new Date(weekly[0]);
+      prevWeek = prevWeek.setDate(prevWeek.getDate() - 2);
+      dispatch(setWeekly(prevWeek));
     } else if (status === 'next') {
-      await dispatch(setWeekly(+nextWeek.getDate() + 2));
-      dispatch(getWeeklyPlanner(weekly[0]));
+      let nextWeek = new Date(weekly[weekly.length - 1]);
+      nextWeek = nextWeek.setDate(nextWeek.getDate() + 1);
+      dispatch(setWeekly(nextWeek));
     }
   };
 

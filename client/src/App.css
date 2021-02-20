@@ -554,6 +554,11 @@ select {
   padding: 0 1.3rem;
 }
 
+.planner__item-createdAt {
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
 .planner__item-group {
   display: flex;
   flex-direction: column;

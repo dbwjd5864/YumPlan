@@ -5,13 +5,12 @@ import {
   createMealPlan,
   updateMealPlan,
   clearCurrentMealPlan,
-  getWeeklyPlanner,
 } from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealWeeklyPlannerForm = ({ week }) => {
   const dispatch = useDispatch();
-  const { currentMealPlan, weekly } = useSelector((state) => state.meals);
+  const { currentMealPlan } = useSelector((state) => state.meals);
 
   useEffect(() => {
     if (currentMealPlan !== null) {
@@ -74,7 +73,7 @@ const MealWeeklyPlannerForm = ({ week }) => {
     setTag('');
   };
 
-  const submitMealPlan = async (e) => {
+  const submitMealPlan = (e) => {
     e.preventDefault();
 
     if (currentMealPlan === null) {
@@ -89,11 +88,10 @@ const MealWeeklyPlannerForm = ({ week }) => {
         })
       );
     } else {
-      await dispatch(updateMealPlan(currentMealPlan._id, mealPlan));
+      dispatch(updateMealPlan(currentMealPlan._id, mealPlan));
     }
 
     dispatch(clearCurrentMealPlan());
-    dispatch(getWeeklyPlanner(weekly[0]));
     setMealPlan({
       name: '',
       photo: '',
