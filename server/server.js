@@ -12,8 +12,8 @@ const userRouter = require('./routes/userRoutes');
 
 // Middleware
 app.use(helmet());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: '10mb', extended: true }));
 app.use(cors());
 app.use(cookieParser());
 

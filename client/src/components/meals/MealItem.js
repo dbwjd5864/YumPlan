@@ -59,7 +59,7 @@ const MealItem = ({ meal }) => {
       <h4 className="meal__item-name heading-2">{name}</h4>
       <div className="meal__item-imgContainer">
         <img
-          className="meal__item-img"
+          className="meal__item-img meal__item-imgDefault"
           src={photo === 'spoon.png' ? defaultImg : photo}
           alt={name}
         />
@@ -70,8 +70,8 @@ const MealItem = ({ meal }) => {
           }}
         >
           <SvgIcon
-            name="add-to-list"
-            color="#8d8479"
+            name="squared-plus"
+            color="#fff"
             width="2.2rem"
             height="2.2rem"
           />

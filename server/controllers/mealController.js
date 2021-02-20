@@ -25,7 +25,6 @@ exports.getAllMeals = async (req, res) => {
 // @access    Public
 exports.increaseLike = async (req, res) => {
   const likeStatus = req.query.like;
-  console.log(likeStatus);
 
   try {
     const mealPlan = await Meal.findById(req.params.mealId);
@@ -244,7 +243,6 @@ exports.deleteMealPlan = async (req, res) => {
 // @access    Public
 exports.updateLike = async (req, res) => {
   const likeStatus = req.query.like;
-  console.log(likeStatus);
 
   try {
     const mealPlan = await Meal.findById(req.params.mealId);
@@ -345,8 +343,6 @@ exports.addFavorite = async (req, res) => {
       .populate('favorites')
       .select({ name: 0, email: 0, date: 0, __v: 0 })
       .slice('favorites', -1);
-
-    console.log(favorite);
 
     res.status(200).json({
       status: 'success',

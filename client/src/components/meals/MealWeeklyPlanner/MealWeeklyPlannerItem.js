@@ -51,9 +51,9 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                   >
                     <SvgIcon
                       name="more-horizontal"
-                      color="#8d8479"
-                      width="2.2rem"
-                      height="2.2rem"
+                      color="#fff"
+                      width="2.4rem"
+                      height="2.4rem"
                     />
                   </button>
                 </div>

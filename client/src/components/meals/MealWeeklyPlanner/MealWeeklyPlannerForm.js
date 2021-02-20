@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FileBase from 'react-file-base64';
+import FileBase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createMealPlan,
@@ -237,12 +237,15 @@ const MealWeeklyPlannerForm = ({ week }) => {
             </div>
           </div>
           <div className="planner__form-group">
-            <FileBase
+            <FileBase64
               id="file-upload"
               type="file"
               multiple={false}
               onDone={({ base64 }) =>
-                setMealPlan({ ...mealPlan, photo: base64 })
+                setMealPlan({
+                  ...mealPlan,
+                  photo: base64,
+                })
               }
             />
           </div>
