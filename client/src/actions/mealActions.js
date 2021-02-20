@@ -135,25 +135,49 @@ export const clearCurrentMealPlan = () => async (dispatch) => {
   });
 };
 
-export const setWeekly = () => async (dispatch) => {
-  let today = new Date();
+export const setWeekly = (setDate) => async (dispatch) => {
+  let today;
+  console.log(setDate);
   let weekly = [];
 
-  for (let i = 1; i <= 7; i++) {
-    let firstDate = today.getDate() - today.getDay() + i;
+  if (setDate === '') {
+    today = new Date();
 
-    let date = new Date(today.setDate(firstDate));
-    date = (
-      date.getFullYear() +
-      '-' +
-      ((date.getMonth() + 1 + '').length === 1
-        ? '0' + (date.getMonth() + 1)
-        : date.getMonth() + 1) +
-      '-' +
-      date.getDate()
-    ).toString();
+    for (let i = 1; i <= 7; i++) {
+      let firstDate = today.getDate() - today.getDay() + i;
 
-    weekly.push(date);
+      let date = new Date(today.setDate(firstDate));
+      date = (
+        date.getFullYear() +
+        '-' +
+        ((date.getMonth() + 1 + '').length === 1
+          ? '0' + (date.getMonth() + 1)
+          : date.getMonth() + 1) +
+        '-' +
+        date.getDate()
+      ).toString();
+
+      weekly.push(date);
+    }
+  } else {
+    today = setDate;
+
+    for (let i = 1; i <= 7; i++) {
+      let firstDate = today.getDate() - today.getDay() + i;
+
+      let date = new Date(today.setDate(firstDate));
+      date = (
+        date.getFullYear() +
+        '-' +
+        ((date.getMonth() + 1 + '').length === 1
+          ? '0' + (date.getMonth() + 1)
+          : date.getMonth() + 1) +
+        '-' +
+        date.getDate()
+      ).toString();
+
+      weekly.push(date);
+    }
   }
 
   dispatch({ type: 'SET_WEEKLY_SUCCESS', payload: weekly });

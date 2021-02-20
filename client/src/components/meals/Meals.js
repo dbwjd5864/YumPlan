@@ -18,7 +18,7 @@ const Meal = () => {
     dispatch(getAllMeals());
     dispatch(getAllFavorites());
     dispatch(getMealPlanner());
-    dispatch(setWeekly());
+    dispatch(setWeekly(''));
   }, [dispatch]);
 
   return (

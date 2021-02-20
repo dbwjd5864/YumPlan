@@ -163,7 +163,7 @@ exports.getWeeklyPlan = async (req, res) => {
 // @desc      Update meal plan
 // @access    Private
 exports.updateMealPlan = async (req, res) => {
-  const { name, ingredients, type, tags, photo } = req.body;
+  const { name, ingredients, type, tags, photo, createdAt } = req.body;
 
   const mealFields = {};
   if (name) mealFields.name = name;
@@ -171,6 +171,7 @@ exports.updateMealPlan = async (req, res) => {
   if (type) mealFields.type = type;
   if (tags) mealFields.tags = tags;
   if (photo) mealFields.photo = photo;
+  if (createdAt) mealFields.createdAt = createdAt;
 
   try {
     const mealPlan = await Meal.findById(req.params.planId);

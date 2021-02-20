@@ -74,7 +74,7 @@ const MealWeeklyPlannerForm = ({ week }) => {
     setTag('');
   };
 
-  const submitMealPlan = (e) => {
+  const submitMealPlan = async (e) => {
     e.preventDefault();
 
     if (currentMealPlan === null) {
@@ -89,19 +89,11 @@ const MealWeeklyPlannerForm = ({ week }) => {
         })
       );
     } else {
-      dispatch(
-        updateMealPlan({
-          name,
-          type,
-          tags,
-          ingredients,
-          createdAt,
-          photo,
-        })
-      );
+      await dispatch(updateMealPlan(currentMealPlan._id, mealPlan));
     }
 
     dispatch(clearCurrentMealPlan());
+    dispatch(getWeeklyPlanner(weekly[0]));
     setMealPlan({
       name: '',
       photo: '',
@@ -110,8 +102,6 @@ const MealWeeklyPlannerForm = ({ week }) => {
       ingredients: [],
       createdAt: '',
     });
-
-    dispatch(getWeeklyPlanner(weekly[0]));
   };
 
   return (
