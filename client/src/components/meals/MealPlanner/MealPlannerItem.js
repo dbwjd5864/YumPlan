@@ -5,7 +5,11 @@ import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealPlannerItem = () => {
-  const { mealPlans } = useSelector((state) => state.meals);
+  const { mealPlans, loading } = useSelector((state) => state.meals);
+
+  if (mealPlans !== null && mealPlans.length === 0 && !loading) {
+    return <h4 className="myMeals__heading heading-2">Please add a Meal ☺</h4>;
+  }
 
   return (
     mealPlans &&

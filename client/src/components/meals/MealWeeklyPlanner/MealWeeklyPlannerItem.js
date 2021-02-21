@@ -8,9 +8,10 @@ import {
   deleteMealPlan,
   setCurrentMealPlan,
 } from '../../../actions/mealActions';
+import Loader from '../../layout/Loader';
 
 const MealWeeklyPlannerItem = ({ day, index }) => {
-  const { weeklyPlans } = useSelector((state) => state.meals);
+  const { weeklyPlans, loading } = useSelector((state) => state.meals);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +20,7 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
         {day.toUpperCase()}
       </legend>
 
-      {weeklyPlans &&
+      {weeklyPlans ? (
         weeklyPlans.map((plan) => {
           if (new Date(plan.createdAt).getDay() === index) {
             return (
@@ -97,7 +98,10 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
               </div>
             );
           }
-        })}
+        })
+      ) : (
+        <Loader />
+      )}
     </fieldset>
   );
 };

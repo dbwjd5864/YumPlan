@@ -11,6 +11,10 @@ const Login = () => {
   const history = useHistory();
 
   useEffect(() => {
+    dispatch(clearErrors());
+  }, []);
+
+  useEffect(() => {
     if (error.id === 'LOGIN_FAIL') {
       setErrMsg(error.msg.errors);
     } else {
