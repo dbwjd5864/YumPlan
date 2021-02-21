@@ -247,7 +247,7 @@ select {
   position: absolute;
   top: -50px;
   left: 23px;
-  font-size: 5rem;
+  font-size: 50px;
   color: var(--text-color);
   transform: scale(1rem);
   z-index: -1;
@@ -258,7 +258,7 @@ select {
   position: absolute;
   top: -50px;
   right: 23px;
-  font-size: 5rem;
+  font-size: 50px;
   color: var(--text-color);
   z-index: -1;
 }
@@ -382,7 +382,7 @@ select {
 
 /* Meal */
 .meal {
-  width: 110rem;
+  width: 80%;
   margin: 20rem 0 8rem;
 }
 
@@ -827,15 +827,14 @@ input[type='file']::before {
 
 /* Show all MealPlanner */
 .myMeals {
-  width: 110rem;
-  margin: 18rem 0;
+  width: 80%;
+  margin: 24rem 5rem 10rem;
 }
 
 .myMeals__container {
   display: grid;
   gap: 3rem;
   grid-template-columns: repeat(auto-fit, minmax(55rem, 1fr));
-  grid-auto-rows: 30rem;
 }
 
 .myMeals__item {
@@ -923,7 +922,7 @@ input[type='file']::before {
 
 /* Favorites */
 .favorites {
-  width: 110rem;
+  width: 80%;
   margin: 20rem 0 8rem;
 }
 
@@ -1090,4 +1089,104 @@ input[type='file']::before {
   font-weight: 900;
 }
 
-/* Animation */
+/* Media Query */
+
+/* Big Desktop */
+@media only screen and (min-width: 112.5em) {
+  /* width > 1800px */
+  /* 1 rem = 12px, 12/16 = 75% */
+  html {
+    font-size: 75%;
+  }
+
+  .myMeals__item {
+    width: 90%;
+  }
+
+  .form-container {
+    width: 70rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* Tab land */
+@media only screen and (max-width: 75em) {
+  /* width < 1200px */
+  /* 1 rem = 9px, 9/16 = 56.25% */
+  html {
+    font-size: 56.25%;
+  }
+}
+
+/* Tab port */
+@media only screen and (max-width: 56.25em) {
+  /*  width < 900px */
+  /* 1 rem = 8px, 8/16 = 50% */
+  html {
+    font-size: 50%;
+  }
+}
+
+/* Phone */
+@media only screen and (max-width: 37.5em) {
+  /* width < 600px */
+  .nav__background {
+    width: 90%;
+  }
+
+  .navigation__list {
+    flex-direction: column;
+    margin-top: 1rem;
+    font-size: 3rem;
+    align-items: flex-end;
+  }
+
+  .navigation__list-item:first-of-type {
+    margin-bottom: 0.5rem;
+  }
+
+  .nav__meal-item {
+    margin: 0 1rem;
+  }
+
+  .myMeals__container {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .myMeals__item {
+    grid-template-columns: 1fr;
+    grid-template-rows: 24rem 30rem;
+  }
+
+  .myMeals__item:nth-child(even) > .myMeals__item-imgContainer {
+    grid-column: 1;
+  }
+
+  .myMeals__info-createdAt {
+    margin-right: 0.8rem;
+  }
+
+  .myMeals__item-ingredients {
+    margin-left: -2.5rem;
+  }
+
+  .login__header-link,
+  .signup__header-link {
+    display: inline-block;
+    margin: 1rem 0;
+  }
+}
+
+/* Small phone */
+@media only screen and (max-width: 24em) {
+  .html {
+    font-size: 50%;
+  }
+
+  .myMeals__item {
+    width: 100%;
+  }
+}
