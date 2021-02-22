@@ -151,7 +151,6 @@ exports.getWeeklyPlan = async (req, res) => {
       weeklyPlan,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).json({
       status: 'fail',
       err,
@@ -349,7 +348,6 @@ exports.addFavorite = async (req, res) => {
       favorite,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).json({
       status: 'fail',
       err,
@@ -381,7 +379,6 @@ exports.updateFavorite = async (req, res) => {
       favorite,
     });
   } catch (err) {
-    console.log(err.message);
     res.status(500).json({
       status: 'fail',
       err,

@@ -129,8 +129,6 @@ exports.isLoggedIn = async (req, res) => {
         user: currentUser,
       });
     } catch (err) {
-      console.log(err.message);
-
       res.status(401).json({
         msg: 'No valid token. Please log in.',
       });
