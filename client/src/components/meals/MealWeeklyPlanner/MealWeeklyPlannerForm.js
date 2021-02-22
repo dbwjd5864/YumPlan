@@ -5,12 +5,13 @@ import {
   createMealPlan,
   updateMealPlan,
   clearCurrentMealPlan,
+  clearError,
 } from '../../../actions/mealActions';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealWeeklyPlannerForm = ({ week }) => {
   const dispatch = useDispatch();
-  const { currentMealPlan } = useSelector((state) => state.meals);
+  const { currentMealPlan, error } = useSelector((state) => state.meals);
 
   useEffect(() => {
     if (currentMealPlan !== null) {
@@ -53,7 +54,7 @@ const MealWeeklyPlannerForm = ({ week }) => {
     if (ingredient) {
       setMealPlan({
         ...mealPlan,
-        ['ingredients']: [...ingredients, ingredient],
+        ingredients: [...ingredients, ingredient],
       });
     }
 
@@ -66,7 +67,7 @@ const MealWeeklyPlannerForm = ({ week }) => {
     if (tag) {
       setMealPlan({
         ...mealPlan,
-        ['tags']: [...tags, tag],
+        tags: [...tags, tag],
       });
     }
 
@@ -100,6 +101,8 @@ const MealWeeklyPlannerForm = ({ week }) => {
       ingredients: [],
       createdAt: '',
     });
+
+    dispatch(clearError());
   };
 
   return (
@@ -257,6 +260,11 @@ const MealWeeklyPlannerForm = ({ week }) => {
             className="form__button"
           />
         </form>
+        {error && (
+          <div className="form__error errorWrapper">
+            <p className="error"> {error}</p>
+          </div>
+        )}
       </fieldset>
     </div>
   );

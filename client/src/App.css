@@ -153,7 +153,7 @@ select {
 
 .navigation__header {
   font-family: 'Lobster', 'sans-serif';
-  margin-top: 2rem;
+  margin-top: 3rem;
   letter-spacing: 5px;
   flex: 1;
   text-align: center;
@@ -354,6 +354,7 @@ select {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  padding: 0 1.2rem;
 }
 
 .footer__copyright {
@@ -378,6 +379,11 @@ select {
   color: #fff;
   font-size: 1.5rem;
   padding: 0.9rem;
+}
+
+.form__error > .error {
+  font-size: 2rem;
+  text-align: center;
 }
 
 /* Meal */
@@ -661,7 +667,7 @@ img[src='/static/media/spoon.dcfea6c0.png'] {
 
 /* Planner Form */
 .planner {
-  width: 110rem;
+  width: 85%;
   margin: 18rem 0;
 }
 
@@ -704,12 +710,13 @@ img[src='/static/media/spoon.dcfea6c0.png'] {
 .planner__week-heading {
   font-size: 3rem;
   margin: 0 1rem;
+  text-align: center;
 }
 
 .planner__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 5rem 0;
+  gap: 5rem 3.3rem;
 }
 
 .planner__form {
@@ -731,7 +738,7 @@ img[src='/static/media/spoon.dcfea6c0.png'] {
 
 .planner__form-border {
   width: 30rem;
-  height: 68rem;
+  height: auto;
   padding: 1.2rem;
   border: 2px solid var(--text-color);
   border-radius: 10px;
@@ -837,7 +844,8 @@ input[type='file']::before {
   grid-template-columns: repeat(auto-fit, minmax(55rem, 1fr));
 }
 
-.myMeals__heading {
+.myMeals__heading,
+.favorites__heading {
   font-size: 3rem;
   text-align: center;
 }
@@ -931,6 +939,10 @@ input[type='file']::before {
   margin: 20rem 0 8rem;
 }
 
+.favorites__heading {
+  grid-column: 1 / -1;
+}
+
 .favorites__container {
   display: grid;
   margin: auto;
@@ -942,12 +954,31 @@ input[type='file']::before {
   gap: 3rem;
 }
 
+.favorites__container .loader__container {
+  grid-column: 1 / -1;
+}
+
 .favorites__item {
   width: 100%;
   justify-self: center;
   height: 100%;
   border-radius: 5px;
   background-color: var(--primary-color);
+}
+
+.favorites__item-delete {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.favorites__item-delete > button {
+  background-color: #fff;
+  border-radius: 20%;
+}
+
+.favorites__item-delete > button > svg {
+  display: flex;
 }
 
 .favorites__item:hover .favorites__item-likeCount {
@@ -1030,6 +1061,14 @@ input[type='file']::before {
   grid-template-rows: 10% 90%;
 }
 
+.favorites__modal-name {
+  margin-top: 2.5rem;
+}
+
+.favorites__modal-info {
+  margin-top: 1.4rem;
+}
+
 .favorites__modal-item {
   background: white;
   padding: 1.5rem;
@@ -1051,7 +1090,7 @@ input[type='file']::before {
 
 .favorites__modal-imgUserContainer {
   position: absolute;
-  top: 6rem;
+  top: 12%;
   left: 1rem;
 }
 
@@ -1094,6 +1133,12 @@ input[type='file']::before {
   font-weight: 900;
 }
 
+.favorites__modal-ingredients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* API Loader  */
 .loader__img {
   width: 17rem;
@@ -1132,9 +1177,9 @@ input[type='file']::before {
 @media only screen and (max-width: 75em) {
   /* width < 1200px */
   /* 1 rem = 9px, 9/16 = 56.25% */
-  html {
+  /* html {
     font-size: 56.25%;
-  }
+  } */
 }
 
 /* Tab port */
@@ -1144,6 +1189,10 @@ input[type='file']::before {
   html {
     font-size: 50%;
   }
+
+  .meal__search-container {
+    width: 100%;
+  }
 }
 
 /* Phone */
@@ -1151,6 +1200,10 @@ input[type='file']::before {
   /* width < 600px */
   .nav__background {
     width: 90%;
+  }
+
+  .meal__container {
+    grid-template-columns: auto;
   }
 
   .navigation__list {
@@ -1166,6 +1219,10 @@ input[type='file']::before {
 
   .nav__meal-item {
     margin: 0 1rem;
+  }
+
+  .planner__week-heading > span {
+    display: block;
   }
 
   .myMeals__container {
@@ -1195,12 +1252,34 @@ input[type='file']::before {
     display: inline-block;
     margin: 1rem 0;
   }
+
+  .favorites__modal-group {
+    grid-template-columns: auto;
+    grid-template-rows: 10% 45% 45%;
+  }
+
+  .favorites__modal-ingredients {
+    width: 85%;
+  }
+
+  .favorites__modal-ingredients > span {
+    border-bottom: 1px solid var(--grey-light);
+  }
+
+  .favorites__modal-createdAt {
+    margin-right: 0.5rem;
+  }
 }
 
 /* Small phone */
 @media only screen and (max-width: 24em) {
+  /* width < 384px */
   .html {
     font-size: 50%;
+  }
+
+  .nav__background {
+    font-size: 3rem;
   }
 
   .myMeals__item {

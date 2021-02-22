@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MealFilter from './MealFilter';
 import MealItem from './MealItem';
-import loader from '../layout/Loader';
+import Loader from '../layout/Loader';
 
 import {
   getAllMeals,
@@ -10,7 +10,6 @@ import {
   getMealPlanner,
   setWeekly,
 } from '../../actions/mealActions';
-import Loader from '../layout/Loader';
 
 const Meal = () => {
   const { meals, filtered } = useSelector((state) => state.meals);
@@ -18,9 +17,9 @@ const Meal = () => {
 
   useEffect(() => {
     dispatch(getAllMeals());
-    dispatch(getAllFavorites());
     dispatch(getMealPlanner());
     dispatch(setWeekly(''));
+    dispatch(getAllFavorites());
   }, [dispatch]);
 
   return (
@@ -33,12 +32,16 @@ const Meal = () => {
           meals.map((meal) => {
             if (meal.type === 'Public') {
               return <MealItem key={meal._id} meal={meal} />;
+            } else {
+              return null;
             }
           })
         ) : filtered ? (
           filtered.map((meal) => {
             if (meal.type === 'Public') {
               return <MealItem key={meal._id} meal={meal} />;
+            } else {
+              return null;
             }
           })
         ) : (

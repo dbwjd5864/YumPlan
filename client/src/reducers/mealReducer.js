@@ -10,7 +10,7 @@ const initialState = {
   error: null,
 };
 
-export default (state = initialState, action) => {
+const mealReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_MEALS_SUCCESS':
       return {
@@ -82,6 +82,7 @@ export default (state = initialState, action) => {
     case 'DELETE_MEALPLAN_FAIL':
     case 'UPDATE_LIKECOUNT_FAIL':
     case 'ADD_FAVORITE_FAIL':
+    case 'UPDATE_FAVORITE_FAIL':
       return {
         ...state,
         loading: false,
@@ -92,6 +93,14 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         favorites: [...state.favorites, action.payload.favorite.favorites[0]],
+      };
+    case 'UPDATE_FAVORITE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        favorites: action.payload.favorite.favorites.map(
+          (favorite) => favorite
+        ),
       };
     case 'UPDATE_MEALPLAN_SUCCESS': {
       return {
@@ -150,7 +159,15 @@ export default (state = initialState, action) => {
         currentMealPlan: null,
       };
     }
+    case 'CLEAR_ERROR': {
+      return {
+        ...state,
+        error: null,
+      };
+    }
     default:
       return state;
   }
 };
+
+export default mealReducer;

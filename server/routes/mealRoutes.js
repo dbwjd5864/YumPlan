@@ -12,6 +12,7 @@ router.use(auth);
 
 router.get('/favorites', mealController.getFavorites);
 router.patch('/:mealId/favorites', mealController.addFavorite);
+router.patch('/favorites/:favoriteId', mealController.updateFavorite);
 
 router
   .route('/planner')

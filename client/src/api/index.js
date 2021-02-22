@@ -39,3 +39,5 @@ export const deleteMealPlan = (mealId) =>
 export const getAllFavorites = () => axios.get(`${mealUrl}/favorites`);
 export const addFavorite = (mealId) =>
   axios.patch(`${mealUrl}/${mealId}/favorites`);
+export const updateFavorite = (favoriteId) =>
+  axios.patch(`${mealUrl}/favorites/${favoriteId}`);

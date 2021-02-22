@@ -11,7 +11,7 @@ import {
 import Loader from '../../layout/Loader';
 
 const MealWeeklyPlannerItem = ({ day, index }) => {
-  const { weeklyPlans, loading } = useSelector((state) => state.meals);
+  const { weeklyPlans } = useSelector((state) => state.meals);
   const dispatch = useDispatch();
 
   return (
@@ -97,6 +97,8 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                 </div>
               </div>
             );
+          } else {
+            return null;
           }
         })
       ) : (

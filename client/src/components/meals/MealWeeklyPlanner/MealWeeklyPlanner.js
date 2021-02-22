@@ -7,6 +7,7 @@ import {
   getWeeklyPlanner,
   setWeekly,
   clearWeeklyPlanner,
+  clearCurrentMealPlan,
 } from '../../../actions/mealActions';
 
 const MealWeeklyPlanner = () => {
@@ -17,7 +18,8 @@ const MealWeeklyPlanner = () => {
 
   useEffect(() => {
     dispatch(getWeeklyPlanner(weekly[0]));
-  }, [weekly, mealPlans]);
+    dispatch(clearCurrentMealPlan());
+  }, [weekly, mealPlans, dispatch]);
 
   const changeWeek = (status) => (e) => {
     e.preventDefault();
@@ -41,7 +43,8 @@ const MealWeeklyPlanner = () => {
           <span>&larr;</span>Prev
         </button>
         <h2 className="planner__week-heading">
-          {weekly && weekly[0]} ~ {weekly && weekly[weekly.length - 1]}
+          <span>{weekly && weekly[0]}</span> <span>~</span>{' '}
+          <span>{weekly && weekly[weekly.length - 1]}</span>
         </h2>
         <button className="planner__week-btn" onClick={changeWeek('next')}>
           Next<span>&rarr;</span>

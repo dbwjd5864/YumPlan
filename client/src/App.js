@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(isLoggedIn());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>

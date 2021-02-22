@@ -11,7 +11,11 @@ const Footer = () => {
           <small>&copy; Copyright 2021, Yujeong Choung</small>
         </div>
         <div className="footer__email">
-          <a href="https://github.com/dbwjd5864" target="_blank">
+          <a
+            href="https://github.com/dbwjd5864"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <SvgIcon
               name="github"
               color="#8d8479"

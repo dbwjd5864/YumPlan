@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
+import { updateFavorite } from '../../../actions/mealActions';
+import Loader from '../../layout/Loader';
+
 const MealFavoritesItem = () => {
-  const { favorites } = useSelector((state) => state.meals);
+  const dispatch = useDispatch();
+  const { favorites, loading } = useSelector((state) => state.meals);
   const [detail, setDetail] = useState('');
 
   const updateDetail = (id) => (e) => {
@@ -17,8 +21,18 @@ const MealFavoritesItem = () => {
     }
   };
 
-  return (
-    favorites &&
+  const changeFavorites = (id) => (e) => {
+    dispatch(updateFavorite(id));
+    e.stopPropagation();
+  };
+
+  if (favorites !== null && favorites.length === 0 && !loading) {
+    return (
+      <h4 className="favorites__heading heading-2">Please add a Favorite ☺</h4>
+    );
+  }
+
+  return favorites && !loading ? (
     favorites.map((favorite) => {
       return (
         <div
@@ -33,6 +47,16 @@ const MealFavoritesItem = () => {
               src={favorite.photo === 'spoon.png' ? defaultImg : favorite.photo}
               alt={favorite.name}
             />
+            <div className="favorites__item-delete">
+              <button onClick={changeFavorites(favorite._id)}>
+                <SvgIcon
+                  name="clear"
+                  color="#999"
+                  width="2.8rem"
+                  height="2.8rem"
+                />
+              </button>
+            </div>
 
             <p className="favorites__item-likeCount hovered">
               <SvgIcon
@@ -124,6 +148,8 @@ const MealFavoritesItem = () => {
         </div>
       );
     })
+  ) : (
+    <Loader />
   );
 };
 

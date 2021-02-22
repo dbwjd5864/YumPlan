@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(clearErrors());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (error.id === 'LOGIN_FAIL') {
@@ -24,7 +24,7 @@ const Login = () => {
     if (isAuthenticated) {
       history.push('/meal');
     }
-  }, [error, isAuthenticated]);
+  }, [error, isAuthenticated, history]);
 
   const [user, setUser] = useState({
     email: '',

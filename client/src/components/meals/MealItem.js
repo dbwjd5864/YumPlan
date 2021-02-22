@@ -22,7 +22,8 @@ const MealItem = ({ meal }) => {
     if (likeStatus) {
       dispatch(updateLikeCount(_id, likeStatus));
     }
-  }, [likeStatus]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [likeStatus, dispatch]);
 
   const changeLikeBtn = (e) => {
     e.preventDefault();

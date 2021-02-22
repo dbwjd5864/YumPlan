@@ -20,7 +20,7 @@ const Signup = () => {
     if (isAuthenticated) {
       history.push('/meal');
     }
-  }, [error, isAuthenticated]);
+  }, [error, isAuthenticated, history]);
 
   const [user, setUser] = useState({
     name: '',

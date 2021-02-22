@@ -57,7 +57,7 @@ export const createMealPlan = (mealPlan) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'CREATE_MEALPLAN_FAIL',
-      payload: err.message,
+      payload: `Created FAILED (Name and Ingredients are required) `,
     });
   }
 };
@@ -109,6 +109,19 @@ export const addFavorite = (mealId) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'ADD_FAVORITE_FAIL',
+      payload: err.message,
+    });
+  }
+};
+
+export const updateFavorite = (favoriteId) => async (dispatch) => {
+  try {
+    const { data } = await api.updateFavorite(favoriteId);
+
+    dispatch({ type: 'UPDATE_FAVORITE_SUCCESS', payload: data });
+  } catch (err) {
+    dispatch({
+      type: 'UPDATE_FAVORITE_FAIL',
       payload: err.message,
     });
   }
@@ -188,4 +201,8 @@ export const setWeekly = (setDate) => async (dispatch) => {
   }
 
   dispatch({ type: 'SET_WEEKLY_SUCCESS', payload: weekly });
+};
+
+export const clearError = () => async (dispatch) => {
+  dispatch({ type: 'CLEAR_ERROR' });
 };

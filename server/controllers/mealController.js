@@ -356,3 +356,35 @@ exports.addFavorite = async (req, res) => {
     });
   }
 };
+
+// @route     PATCH api/v1/meal/favorites/:favoriteId
+// @desc      Update favorite
+// @access    Private
+exports.updateFavorite = async (req, res) => {
+  try {
+    const favorite = await User.findOneAndUpdate(
+      { favorites: req.params.favoriteId },
+      { $pull: { favorites: req.params.favoriteId } },
+      { new: true }
+    )
+      .populate('favorites')
+      .select({ name: 0, email: 0, date: 0, __v: 0 });
+
+    if (!favorite) {
+      return res.status(404).json({
+        msg: 'No Meal found with that ID',
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      favorite,
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({
+      status: 'fail',
+      err,
+    });
+  }
+};
