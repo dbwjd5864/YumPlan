@@ -105,7 +105,7 @@ exports.logout = (req, res) => {
 // @route     GET api/v1/user
 // @desc      check the user is logged in
 // @access    Private
-exports.isLoggedIn = async (req, res) => {
+exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
@@ -133,5 +133,7 @@ exports.isLoggedIn = async (req, res) => {
         msg: 'No valid token. Please log in.',
       });
     }
+  } else {
+    return next();
   }
 };
