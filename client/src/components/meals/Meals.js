@@ -13,14 +13,18 @@ import {
 
 const Meal = () => {
   const { meals, filtered } = useSelector((state) => state.meals);
+  const { isAuthenticated } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllMeals());
-    dispatch(getMealPlanner());
     dispatch(setWeekly(''));
-    dispatch(getAllFavorites());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getMealPlanner());
+    dispatch(getAllFavorites());
+  }, [dispatch, isAuthenticated]);
 
   return (
     <div className="meal">

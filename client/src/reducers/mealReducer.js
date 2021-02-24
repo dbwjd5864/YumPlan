@@ -37,15 +37,6 @@ const mealReducer = (state = initialState, action) => {
         favorites: action.payload.favorites,
         loading: false,
       };
-
-    case 'FETCH_MEALS_FAIL':
-    case 'FETCH_MEALPLAN_FAIL':
-    case 'FETCH_WEEKLYPLAN_FAIL':
-    case 'FETCH_FAVORITES_FAIL':
-      return {
-        loading: false,
-        error: action.payload,
-      };
     case 'FILTER_MEALS':
       return {
         ...state,
@@ -77,6 +68,10 @@ const mealReducer = (state = initialState, action) => {
         meals: [...state.meals, action.payload.mealPlan],
         mealPlans: [...state.mealPlans, action.payload.mealPlan],
       };
+    case 'FETCH_MEALS_FAIL':
+    case 'FETCH_MEALPLAN_FAIL':
+    case 'FETCH_WEEKLYPLAN_FAIL':
+    case 'FETCH_FAVORITES_FAIL':
     case 'CREATE_MEALPLAN_FAIL':
     case 'UPDATE_MEALPLAN_FAIL':
     case 'DELETE_MEALPLAN_FAIL':
