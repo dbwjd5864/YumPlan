@@ -5,8 +5,11 @@ export const isLoggedIn = () => async (dispatch) => {
   try {
     const { data } = await api.isLoggedIn();
     console.log(data);
-
-    dispatch({ type: 'USER_LOADED', payload: data });
+    if (data.isAuthenticated) {
+      dispatch({ type: 'USER_LOADED', payload: data });
+    } else {
+      dispatch({ type: 'AUTH_FAIL' });
+    }
   } catch (err) {
     console.log(err.message);
 

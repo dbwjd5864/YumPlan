@@ -122,6 +122,7 @@ exports.isLoggedIn = async (req, res) => {
       return res.status(200).json({
         status: 'success',
         token,
+        isAuthenticated: true,
         user: currentUser,
       });
     } catch (err) {
@@ -132,6 +133,7 @@ exports.isLoggedIn = async (req, res) => {
   } else {
     res.json({
       status: 'fail',
+      isAuthenticated: false,
       msg: 'No token verified',
     });
   }
