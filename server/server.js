@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const path = require('path');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
@@ -12,8 +11,12 @@ const mealRouter = require('./routes/mealRoutes');
 const userRouter = require('./routes/userRoutes');
 
 // Middleware
-app.use(cors());
-app.options('*', cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'https://yumplan.netlify.app'],
+    credentials: true,
+  })
+);
 app.use(helmet());
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(express.json({ limit: '10mb', extended: true }));
