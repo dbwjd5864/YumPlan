@@ -7,7 +7,7 @@ export const isLoggedIn = () => async (dispatch) => {
 
     dispatch({ type: 'USER_LOADED', payload: data });
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
 
     dispatch({ type: 'AUTH_FAIL' });
   }
