@@ -2,42 +2,44 @@ import axios from 'axios';
 
 // User API
 const userUrl = 'https://yumplan.herokuapp.com/api/v1/user';
+const proxy = '/api/v1/user';
 
-export const isLoggedIn = () => axios.get(`${userUrl}`);
+export const isLoggedIn = () => axios.get(`${proxy}`);
 
-export const signup = (newUser) => axios.post(`${userUrl}/signup`, newUser);
+export const signup = (newUser) => axios.post(`${proxy}/signup`, newUser);
 
-export const login = (user) => axios.post(`${userUrl}/login`, user);
+export const login = (user) => axios.post(`${proxy}/login`, user);
 
-export const logout = () => axios.get(`${userUrl}/logout`);
+export const logout = () => axios.get(`${proxy}/logout`);
 
 ///////////////////////////
 // Meal API
 const mealUrl = 'https://yumplan.herokuapp.com/api/v1/meal';
+const mealProxy = '/api/v1/meal';
 
-export const getAllMeals = () => axios.get(`${mealUrl}`);
+export const getAllMeals = () => axios.get(`${mealProxy}`);
 
 export const updateLikeCount = (mealId, updateLike) =>
-  axios.patch(`${mealUrl}/${mealId}?like=${updateLike}`);
+  axios.patch(`${mealProxy}/${mealId}?like=${updateLike}`);
 
-export const getMealPlanner = () => axios.get(`${mealUrl}/planner`);
+export const getMealPlanner = () => axios.get(`${mealProxy}/planner`);
 
 export const getWeeklyPlanner = (week) =>
-  axios.get(`${mealUrl}/planner/weekly-plan/${week}`);
+  axios.get(`${mealProxy}/planner/weekly-plan/${week}`);
 
 export const createMealPlan = (mealPlan) =>
-  axios.post(`${mealUrl}/planner`, mealPlan);
+  axios.post(`${mealProxy}/planner`, mealPlan);
 
 export const updateMealPlan = (mealId, updatedMealPlan) =>
-  axios.patch(`${mealUrl}/planner/${mealId}`, updatedMealPlan);
+  axios.patch(`${mealProxy}/planner/${mealId}`, updatedMealPlan);
 
 export const deleteMealPlan = (mealId) =>
-  axios.delete(`${mealUrl}/planner/${mealId}`);
+  axios.delete(`${mealProxy}/planner/${mealId}`);
 
 // Meal Favorite
 
-export const getAllFavorites = () => axios.get(`${mealUrl}/favorites`);
+export const getAllFavorites = () => axios.get(`${mealProxy}/favorites`);
 export const addFavorite = (mealId) =>
-  axios.patch(`${mealUrl}/${mealId}/favorites`);
+  axios.patch(`${mealProxy}/${mealId}/favorites`);
 export const updateFavorite = (favoriteId) =>
-  axios.patch(`${mealUrl}/favorites/${favoriteId}`);
+  axios.patch(`${mealProxy}/favorites/${favoriteId}`);

@@ -105,13 +105,15 @@ exports.logout = (req, res) => {
 // @route     GET api/v1/user
 // @desc      check the user is logged in
 // @access    Private
-exports.isLoggedIn = async (req, res, next) => {
+exports.isLoggedIn = async (req, res) => {
+  console.log('ccc');
   if (req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.TOKEN_SECRET
       );
+      console.log(decoded);
 
       const currentUser = await User.findById(decoded.user);
 
@@ -121,6 +123,7 @@ exports.isLoggedIn = async (req, res, next) => {
           httpOnly: true,
         });
       }
+      console.log(currentUser);
       const token = req.cookies.jwt;
 
       return res.status(200).json({
@@ -133,11 +136,5 @@ exports.isLoggedIn = async (req, res, next) => {
         msg: 'No valid token. Please log in.',
       });
     }
-  } else {
-    res.cookie('jwt', 'notLoggedIn', {
-      expires: new Date(Date.now() + 10 * 1000),
-      httpOnly: true,
-    });
-    res.status(200).json({ status: 'success' });
   }
 };

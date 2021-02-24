@@ -4,6 +4,7 @@ import { returnErrors } from './errorActions';
 export const isLoggedIn = () => async (dispatch) => {
   try {
     const { data } = await api.isLoggedIn();
+    console.log(data);
 
     dispatch({ type: 'USER_LOADED', payload: data });
   } catch (err) {
