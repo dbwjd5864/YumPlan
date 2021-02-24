@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
@@ -10,10 +9,13 @@ const connection = require('./db/connection.js');
 const mealRouter = require('./routes/mealRoutes');
 const userRouter = require('./routes/userRoutes');
 
+const app = express();
+app.enable('trust proxy');
+
 // Middleware
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://yumplan.netlify.app'],
+    origin: ['https://yumplan.netlify.app', 'http://localhost:3000'],
     credentials: true,
   })
 );
