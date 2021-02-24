@@ -13,7 +13,7 @@ const createSendToken = (user, statusCode, req, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    secure: req.headers['x-forwarded-proto'] === 'https' || req.secure,
   });
 
   // Remove password from output
@@ -102,14 +102,12 @@ exports.logout = (req, res) => {
 // @desc      check the user is logged in
 // @access    Private
 exports.isLoggedIn = async (req, res) => {
-  console.log('ccc');
   if (req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.TOKEN_SECRET
       );
-      console.log(decoded);
 
       const currentUser = await User.findById(decoded.user);
 
@@ -119,7 +117,6 @@ exports.isLoggedIn = async (req, res) => {
           httpOnly: true,
         });
       }
-      console.log(currentUser);
       const token = req.cookies.jwt;
 
       return res.status(200).json({
@@ -132,5 +129,10 @@ exports.isLoggedIn = async (req, res) => {
         msg: 'No valid token. Please log in.',
       });
     }
+  } else {
+    res.json({
+      status: 'fail',
+      msg: 'No token verified',
+    });
   }
 };

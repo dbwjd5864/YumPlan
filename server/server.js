@@ -15,7 +15,8 @@ app.enable('trust proxy');
 // Middleware
 app.use(
   cors({
-    origin: ['https://yumplan.netlify.app', 'http://localhost:3000'],
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   })
 );
