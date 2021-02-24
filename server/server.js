@@ -15,7 +15,7 @@ app.enable('trust proxy');
 // Middleware
 app.use(
   cors({
-    origin: true,
+    origin: 'https://yumplan.netlify.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   })
