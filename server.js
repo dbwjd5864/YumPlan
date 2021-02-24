@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const app = express();
+const path = require('path');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
@@ -13,6 +13,7 @@ const userRouter = require('./routes/userRoutes');
 
 // Middleware
 app.use(cors());
+app.options('*', cors());
 app.use(helmet());
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(express.json({ limit: '10mb', extended: true }));
@@ -35,10 +36,10 @@ connection.once('open', () => {
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/meal', mealRouter);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-  );
-}
+//   app.get('*', (req, res) =>
+//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+//   );
+// }

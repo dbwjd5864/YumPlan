@@ -106,12 +106,14 @@ exports.logout = (req, res) => {
 // @desc      check the user is logged in
 // @access    Private
 exports.isLoggedIn = async (req, res) => {
+  console.log('ccc');
   if (req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.TOKEN_SECRET
       );
+      console.log(decoded);
 
       const currentUser = await User.findById(decoded.user);
 
@@ -121,6 +123,7 @@ exports.isLoggedIn = async (req, res) => {
           httpOnly: true,
         });
       }
+      console.log(currentUser);
       const token = req.cookies.jwt;
 
       return res.status(200).json({
