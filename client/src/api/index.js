@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // User API
 const userUrl = 'https://yumplan.herokuapp.com/api/v1/user';
-const proxy = '/api/v1/user';
+// const proxy = '/api/v1/user';
 
 export const isLoggedIn = () => axios.get(`${userUrl}`);
 
@@ -15,7 +15,7 @@ export const logout = () => axios.get(`${userUrl}/logout`);
 ///////////////////////////
 // Meal API
 const mealUrl = 'https://yumplan.herokuapp.com/api/v1/meal';
-const mealProxy = '/api/v1/meal';
+// const mealProxy = '/api/v1/meal';
 
 export const getAllMeals = () => axios.get(`${mealUrl}`);
 
