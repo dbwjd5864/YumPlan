@@ -8,23 +8,24 @@ const createSendToken = (user, statusCode, req, res) => {
     expiresIn: process.env.TOKEN_EXPIRES_IN,
   });
 
-  res.cookie('jwt', token, {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-    SameSite: 'none',
-    secure: req.headers['x-forwarded-proto'] === 'https' || req.secure || true,
-  });
-
   // Remove password from output
   user.password = undefined;
 
-  res.status(statusCode).json({
-    status: 'success',
-    token,
-    user,
-  });
+  res
+    .cookie('jwt', token, {
+      expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
+    .status(statusCode)
+    .json({
+      status: 'success',
+      token,
+      user,
+    });
 };
 
 // @route     POST api/v1/user/signup
@@ -92,9 +93,11 @@ exports.login = async (req, res) => {
 // @desc      log out and clear cookie
 // @access    Public
 exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
+  res.cookie('jwt', '', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
+    secure: true,
+    sameSite: 'none',
   });
   res.status(200).json({ status: 'success' });
 };
@@ -113,9 +116,11 @@ exports.isLoggedIn = async (req, res) => {
       const currentUser = await User.findById(decoded.user);
 
       if (!currentUser) {
-        return res.cookie('jwt', 'loggedout', {
+        return res.cookie('jwt', '', {
           expires: new Date(Date.now() + 10 * 1000),
           httpOnly: true,
+          secure: true,
+          sameSite: 'none',
         });
       }
       const token = req.cookies.jwt;
