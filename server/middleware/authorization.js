@@ -3,7 +3,6 @@ const { promisify } = require('util');
 const User = require('../models/User');
 
 module.exports = async function (req, res, next) {
-  console.log(req.cookies.jwt);
   let token;
   if (
     req.headers.authorization &&

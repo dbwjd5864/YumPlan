@@ -34,18 +34,21 @@ export const getWeeklyPlanner = (week) =>
   });
 
 export const createMealPlan = (mealPlan) =>
-  axios.post(`${mealUrl}/planner`, mealPlan);
+  axios.post(`${mealUrl}/planner`, mealPlan, { withCredentials: true });
 
 export const updateMealPlan = (mealId, updatedMealPlan) =>
-  axios.patch(`${mealUrl}/planner/${mealId}`, updatedMealPlan);
+  axios.patch(`${mealUrl}/planner/${mealId}`, updatedMealPlan, {
+    withCredentials: true,
+  });
 
 export const deleteMealPlan = (mealId) =>
-  axios.delete(`${mealUrl}/planner/${mealId}`);
+  axios.delete(`${mealUrl}/planner/${mealId}`, { withCredentials: true });
 
 // Meal Favorite
 
-export const getAllFavorites = () => axios.get(`${mealUrl}/favorites`);
+export const getAllFavorites = () =>
+  axios.get(`${mealUrl}/favorites`, { withCredentials: true });
 export const addFavorite = (mealId) =>
-  axios.patch(`${mealUrl}/${mealId}/favorites`);
+  axios.patch(`${mealUrl}/${mealId}/favorites`, { withCredentials: true });
 export const updateFavorite = (favoriteId) =>
-  axios.patch(`${mealUrl}/favorites/${favoriteId}`);
+  axios.patch(`${mealUrl}/favorites/${favoriteId}`, { withCredentials: true });
