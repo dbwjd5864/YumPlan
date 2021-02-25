@@ -4,11 +4,14 @@ import axios from 'axios';
 const userUrl = 'https://yumplan.herokuapp.com/api/v1/user';
 // const userProxy = '/api/v1/user';
 
-export const isLoggedIn = () => axios.get(`${userUrl}`);
+export const isLoggedIn = () =>
+  axios.get(`${userUrl}`, { withCredentials: true });
 
-export const signup = (newUser) => axios.post(`${userUrl}/signup`, newUser);
+export const signup = (newUser) =>
+  axios.post(`${userUrl}/signup`, newUser, { withCredentials: true });
 
-export const login = (user) => axios.post(`${userUrl}/login`, user);
+export const login = (user) =>
+  axios.post(`${userUrl}/login`, user, { withCredentials: true });
 
 export const logout = () => axios.get(`${userUrl}/logout`);
 
@@ -22,10 +25,13 @@ export const getAllMeals = () => axios.get(`${mealUrl}`);
 export const updateLikeCount = (mealId, updateLike) =>
   axios.patch(`${mealUrl}/${mealId}?like=${updateLike}`);
 
-export const getMealPlanner = () => axios.get(`${mealUrl}/planner`);
+export const getMealPlanner = () =>
+  axios.get(`${mealUrl}/planner`, { withCredentials: true });
 
 export const getWeeklyPlanner = (week) =>
-  axios.get(`${mealUrl}/planner/weekly-plan/${week}`);
+  axios.get(`${mealUrl}/planner/weekly-plan/${week}`, {
+    withCredentials: true,
+  });
 
 export const createMealPlan = (mealPlan) =>
   axios.post(`${mealUrl}/planner`, mealPlan);
