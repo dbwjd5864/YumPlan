@@ -19,6 +19,7 @@ const createSendToken = (user, statusCode, req, res) => {
       httpOnly: true,
       sameSite: 'none',
       secure: true,
+      Domain: yumplan.ga,
     })
     .status(statusCode)
     .json({
