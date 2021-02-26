@@ -1,2 +1,2 @@
-/api/v1/meal/planner https://yumplan.herokuapp.com/api/v1/meal/planner/:splat 200
+/api/* https://yumplan.herokuapp.com/api/:splat 200
 /* /index.html 200

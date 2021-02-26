@@ -25,7 +25,11 @@ app.use(express.json({ limit: '10mb', extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://yumplan.netlify.app'],
+    origin: [
+      'http://localhost:3000',
+      'https://yumplan.netlify.app',
+      'https://yumplan.ga',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   })
