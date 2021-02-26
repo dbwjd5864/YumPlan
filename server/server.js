@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
@@ -23,17 +24,7 @@ connection.once('open', () => {
 // Middleware
 app.use(express.json({ limit: '10mb', extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: [
-      'http://localhost:3000',
-      'https://yumplan.netlify.app',
-      'https://yumplan.ga',
-    ],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(helmet());
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
@@ -44,3 +35,11 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/meal', mealRouter);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(__dirname, '../client/build'));
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, '/../client/build/index.html'))
+  );
+}

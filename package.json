@@ -1,0 +1,16 @@
+{
+  "name": "YumPlan",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "heroku-postbuild": "NPM__CONFIG__PRODUCTION=false npm install --prefix server && npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbwjd5864/YumPlan.git"
+  },
+  "keywords": [],
+  "author": "Yujeong Choung",
+  "license": "MIT",
+  "homepage": "https://github.com/dbwjd5864/YumPlan#readme"
+}
