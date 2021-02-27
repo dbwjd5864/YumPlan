@@ -41,6 +41,7 @@ app.use(
           "'unsafe-inline'",
         ],
         'img-src': ["'self'", 'data:'],
+        'font-src': ["'self'", 'https://*.com', 'data:'],
       },
     },
   })
