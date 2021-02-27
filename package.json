@@ -1,7 +1,6 @@
 {
   "name": "YumPlan",
   "version": "1.0.0",
-  "main": "server/server.js",
   "private": true,
   "scripts": {
     "heroku-postbuild": "npm install --prefix server && npm install --prefix client && npm run build --prefix client"
