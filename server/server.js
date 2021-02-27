@@ -3,7 +3,6 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-const favicon = require('express-favicon');
 
 const connection = require('./db/connection.js');
 
@@ -12,7 +11,6 @@ const mealRouter = require('./routes/mealRoutes');
 const userRouter = require('./routes/userRoutes');
 
 const app = express();
-app.use(favicon(__dirname, '../client/build/favicon.ico'));
 
 // Connect to DB and server
 connection.once('open', () => {
@@ -35,9 +33,9 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/meal', mealRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/', 'build')));
+  app.use(express.static(__dirname, '../client/build'));
 
   app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+    res.sendFile(path.resolve(__dirname, '/../client/build/index.html'))
   );
 }
