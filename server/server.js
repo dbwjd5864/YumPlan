@@ -35,6 +35,9 @@ app.use(
           "'unsafe-inline'",
           'https://yumplan.herokuapp.com',
         ],
+        styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
+        imgSrc: ["'self'", 'https://*.com'],
+        fontSrc: ["'self'", 'https://*.com', 'data:'],
       },
     },
   })
