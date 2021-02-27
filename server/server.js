@@ -29,15 +29,18 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
+        'default-src': ["'self'"],
+        'script-src': [
           "'self'",
           "'unsafe-inline'",
           'https://yumplan.herokuapp.com',
         ],
-        styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
-        imgSrc: ["'self'", 'https://*.com'],
-        fontSrc: ["'self'", 'https://*.com', 'data:'],
+        'style-src': [
+          "'self'",
+          'https://fonts.googleapis.com',
+          "'unsafe-inline'",
+        ],
+        'img-src': ["'self'", 'data:'],
       },
     },
   })
