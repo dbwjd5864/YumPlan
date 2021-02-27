@@ -7,27 +7,24 @@ const createSendToken = (user, statusCode, req, res) => {
   const token = jwt.sign({ user: user._id }, process.env.TOKEN_SECRET, {
     expiresIn: process.env.TOKEN_EXPIRES_IN,
   });
-  const cookieOption = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  };
-
-  if (process.env.NODE_ENV === 'production') {
-    cookieOption.secure = true;
-  }
-
-  res.cookie('jwt', token, cookieOption);
 
   // Remove password from output
   user.password = undefined;
 
-  res.status(statusCode).json({
-    status: 'success',
-    token,
-    user,
-  });
+  res
+    .cookie('jwt', token, {
+      expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+      secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+    })
+    .status(statusCode)
+    .json({
+      status: 'success',
+      token,
+      user,
+    });
 };
 
 // @route     POST api/v1/user/signup
@@ -95,9 +92,11 @@ exports.login = async (req, res) => {
 // @desc      log out and clear cookie
 // @access    Public
 exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
+  res.cookie('jwt', '', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
+    secure: true,
+    sameSite: 'none',
   });
   res.status(200).json({ status: 'success' });
 };
@@ -106,29 +105,29 @@ exports.logout = (req, res) => {
 // @desc      check the user is logged in
 // @access    Private
 exports.isLoggedIn = async (req, res) => {
-  console.log('ccc');
   if (req.cookies.jwt) {
     try {
       const decoded = await promisify(jwt.verify)(
         req.cookies.jwt,
         process.env.TOKEN_SECRET
       );
-      console.log(decoded);
 
       const currentUser = await User.findById(decoded.user);
 
       if (!currentUser) {
-        return res.cookie('jwt', 'loggedout', {
+        return res.cookie('jwt', '', {
           expires: new Date(Date.now() + 10 * 1000),
           httpOnly: true,
+          secure: true,
+          sameSite: 'none',
         });
       }
-      console.log(currentUser);
       const token = req.cookies.jwt;
 
       return res.status(200).json({
         status: 'success',
         token,
+        isAuthenticated: true,
         user: currentUser,
       });
     } catch (err) {
@@ -136,5 +135,11 @@ exports.isLoggedIn = async (req, res) => {
         msg: 'No valid token. Please log in.',
       });
     }
+  } else {
+    res.json({
+      status: 'fail',
+      isAuthenticated: false,
+      msg: 'No token verified',
+    });
   }
 };
