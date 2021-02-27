@@ -1,9 +1,10 @@
 {
   "name": "YumPlan",
   "version": "1.0.0",
+  "main": "server/server.js",
   "private": true,
   "scripts": {
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix server && npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
