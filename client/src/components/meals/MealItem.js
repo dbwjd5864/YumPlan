@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateLikeCount, addFavorite } from '../../actions/mealActions';
-import defaultImg from '../../img/spoon.png';
+// import img from `../../img/${photo}`;
 import SvgIcon from '../layout/SvgIcon';
 
 const MealItem = ({ meal }) => {
@@ -61,7 +61,11 @@ const MealItem = ({ meal }) => {
       <div className="meal__item-imgContainer">
         <img
           className="meal__item-img meal__item-imgDefault"
-          src={photo === 'spoon.png' ? defaultImg : photo}
+          src={
+            photo.split(':')[0] === 'data'
+              ? photo
+              : require(`../../img/${photo}`).default
+          }
           alt={name}
         />
         <button
