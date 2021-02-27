@@ -28,10 +28,6 @@ app.use(cors());
 app.use(helmet());
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('Hello to YumPlan API');
-});
-
 // Routes
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/meal', mealRouter);
