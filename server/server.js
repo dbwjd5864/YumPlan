@@ -5,11 +5,11 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const favicon = require('express-favicon');
 
-const connection = require('./server/db/connection.js');
+const connection = require('./db/connection.js');
 
 // Import Routes
-const mealRouter = require('./server/routes/mealRoutes');
-const userRouter = require('./server/routes/userRoutes');
+const mealRouter = require('./routes/mealRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 app.use(favicon(__dirname, '../client/build/favicon.ico'));

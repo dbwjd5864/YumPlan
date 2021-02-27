@@ -1,5 +1,5 @@
-const Meal = require('./../models/Meal');
-const User = require('./../models/User');
+const Meal = require('../models/Meal');
+const User = require('../models/User');
 
 // @route     GET api/v1/meal
 // @desc      Get all meal ideas from all users
