@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
 const MealPlannerItem = () => {
@@ -19,7 +18,11 @@ const MealPlannerItem = () => {
           <div className="myMeals__item-imgContainer">
             <img
               className="myMeals__item-img"
-              src={mealPlan.photo === 'spoon.png' ? defaultImg : mealPlan.photo}
+              src={
+                mealPlan.photo.split(':')[0] === 'data'
+                  ? mealPlan.photo
+                  : require(`../../../img/${mealPlan.photo}`).default
+              }
               alt={mealPlan.name}
             />
           </div>

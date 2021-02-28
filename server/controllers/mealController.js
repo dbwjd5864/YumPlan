@@ -62,10 +62,6 @@ exports.increaseLike = async (req, res) => {
   }
 };
 
-// @route     GET api/v1/meal/favorite
-// @desc      GET all Favorite meal plans
-// @access    Private
-
 // @route     GET api/v1/meal/planner
 // @desc      Show Meal Planner
 // @access    Private

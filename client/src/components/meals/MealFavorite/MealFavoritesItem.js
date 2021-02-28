@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
 import { updateFavorite } from '../../../actions/mealActions';
@@ -44,7 +43,11 @@ const MealFavoritesItem = () => {
             <div className="favorites__item-overlay"></div>
             <img
               className="favorites__item-img"
-              src={favorite.photo === 'spoon.png' ? defaultImg : favorite.photo}
+              src={
+                favorite.photo.split(':')[0] === 'data'
+                  ? favorite.photo
+                  : require(`../../../img/${favorite.photo}`).default
+              }
               alt={favorite.name}
             />
             <div className="favorites__item-delete">
@@ -86,7 +89,9 @@ const MealFavoritesItem = () => {
                 <img
                   className="favorites__modal-img"
                   src={
-                    favorite.photo === 'spoon.png' ? defaultImg : favorite.photo
+                    favorite.photo.split(':')[0] === 'data'
+                      ? favorite.photo
+                      : require(`../../../img/${favorite.photo}`).default
                   }
                   alt={favorite.name}
                 />

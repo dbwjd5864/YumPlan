@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateLikeCount, addFavorite } from '../../actions/mealActions';
-// import img from `../../img/${photo}`;
 import SvgIcon from '../layout/SvgIcon';
 
 const MealItem = ({ meal }) => {

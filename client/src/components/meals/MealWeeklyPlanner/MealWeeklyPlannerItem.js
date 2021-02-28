@@ -1,5 +1,4 @@
 import React from 'react';
-import defaultImg from '../../../img/spoon.png';
 import SvgIcon from '../../layout/SvgIcon';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,7 +42,11 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                 <div className="planner__item-imgContainer">
                   <img
                     className="planner__item-img"
-                    src={plan.photo === 'spoon.png' ? defaultImg : plan.photo}
+                    src={
+                      plan.photo.split(':')[0] === 'data'
+                        ? plan.photo
+                        : require(`../../../img/${plan.photo}`).default
+                    }
                     alt={plan.name}
                   />
                   <button
