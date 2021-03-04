@@ -59,8 +59,8 @@ cd server && npm run client
 Unauthorized users can visit **Home** and **Meals** page only
 
 <p float='left' align='middle'>
-<img src='assets/home.png' width='200' alt='home'/>
-<img src='assets/allMeals.png'width='200'  alt='allMeals'/>
+<img src='assets/home.png' width='400' alt='home'/>
+<img src='assets/allMeals.png'width='400'  alt='allMeals'/>
 <p align='middle'>Home || all Meals</p>
 </p>
 
@@ -69,14 +69,14 @@ Unauthorized users can visit **Home** and **Meals** page only
 After signup or login, users can add create their own **_weekly planner_**, see what they have added to their **_meal planner_** and add other people's meals to their **_favorite_**
 
 <p float='left' align='middle'>
-<img src='assets/weekly.png' width='200' alt='weekly'/>
-<img src='assets/myMeals.png' width='200' alt='myMeals'/>
+<img src='assets/weekly.png' width='400' alt='weekly'/>
+<img src='assets/myMeals.png' width='400' alt='myMeals'/>
 <p align='middle'>weekly || my Meals</p>
 </p>
 
 <p float='left' align='middle'>
-<img src='assets/favorite.png' width='200' alt='favorite'/>
-<img src='assets/favorite-detail.png' width='200' alt='favorite-detail'/>
+<img src='assets/favorite.png' width='400' alt='favorite'/>
+<img src='assets/favorite-detail.png' width='400' alt='favorite-detail'/>
 <br>
 <p align='middle'>favorite || favorite-detail</p>
 </p>
@@ -86,8 +86,8 @@ After signup or login, users can add create their own **_weekly planner_**, see 
 Users can **_search_** other people's meal ideas using keyword and give a **_like_** button
 
 <p float='left' align='middle'>
-<img src='assets/search.png' width='200' alt='favorite'/>
-<img src='assets/like.png' width='200' alt='favorite-detail'/>
+<img src='assets/search.png' width='400' alt='search'/>
+<img src='assets/like.png' width='400' alt='Like'/>
 <br>
 <p align='middle'>Search || Like</p>
 </p>
