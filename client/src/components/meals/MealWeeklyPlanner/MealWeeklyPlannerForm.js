@@ -120,7 +120,7 @@ const MealWeeklyPlannerForm = ({ week }) => {
               dispatch(clearCurrentMealPlan());
             }}
           >
-            <SvgIcon name="clear" color="#fff" width="2.2rem" height="2.2rem" />
+            <SvgIcon name="clear" color="#fff" width="2.2em" height="2.2em" />
             CLEAR
           </button>
 
@@ -197,8 +197,8 @@ const MealWeeklyPlannerForm = ({ week }) => {
                   <SvgIcon
                     name="plus-alt"
                     color="#999"
-                    width="1.6rem"
-                    height="1.6rem"
+                    width="1.6em"
+                    height="1.6em"
                   />
                 </button>
               </div>
@@ -227,8 +227,8 @@ const MealWeeklyPlannerForm = ({ week }) => {
                   <SvgIcon
                     name="plus-alt"
                     color="#999"
-                    width="1.6rem"
-                    height="1.6rem"
+                    width="1.6em"
+                    height="1.6em"
                   />
                 </button>
               </div>

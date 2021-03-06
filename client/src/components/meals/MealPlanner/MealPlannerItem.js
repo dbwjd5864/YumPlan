@@ -45,8 +45,8 @@ const MealPlannerItem = () => {
                   <SvgIcon
                     name="triangle-right"
                     color="#999"
-                    width="1.3rem"
-                    height="1.3rem"
+                    width="1.3em"
+                    height="1.3em"
                   />{' '}
                   {ingredient}
                 </span>
@@ -54,12 +54,7 @@ const MealPlannerItem = () => {
             </div>
             <div className="myMeals__item-tags">
               {mealPlan.tags.length > 0 ? (
-                <SvgIcon
-                  name="tag"
-                  color="#999"
-                  width="1.3rem"
-                  height="1.3rem"
-                />
+                <SvgIcon name="tag" color="#999" width="1.3em" height="1.3em" />
               ) : null}
               <p className="myMeals__tags-container">
                 {mealPlan.tags.map((tag, index) => (

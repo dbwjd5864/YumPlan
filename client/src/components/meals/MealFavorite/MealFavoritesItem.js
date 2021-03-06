@@ -55,19 +55,14 @@ const MealFavoritesItem = () => {
                 <SvgIcon
                   name="clear"
                   color="#999"
-                  width="2.8rem"
-                  height="2.8rem"
+                  width="2.8em"
+                  height="2.8em"
                 />
               </button>
             </div>
 
             <p className="favorites__item-likeCount hovered">
-              <SvgIcon
-                name="heart"
-                color="#fff"
-                width="2.1rem"
-                height="2.1rem"
-              />
+              <SvgIcon name="heart" color="#fff" width="2.1em" height="2.1em" />
               {favorite.likeCount}
             </p>
           </div>
@@ -83,7 +78,7 @@ const MealFavoritesItem = () => {
                 type="button"
                 onClick={updateDetail('')}
               >
-                <SvgIcon name="clear" color="#fff" width="4rem" height="4rem" />
+                <SvgIcon name="clear" color="#fff" width="4em" height="4em" />
               </button>
               <div className="favorites__modal-imgContainer">
                 <img
@@ -125,8 +120,8 @@ const MealFavoritesItem = () => {
                       <SvgIcon
                         name="triangle-right"
                         color="#999"
-                        width="1.3rem"
-                        height="1.3rem"
+                        width="1.3em"
+                        height="1.3em"
                       />{' '}
                       {ingredient}
                     </span>
@@ -137,8 +132,8 @@ const MealFavoritesItem = () => {
                     <SvgIcon
                       name="tag"
                       color="#999"
-                      width="1.3rem"
-                      height="1.3rem"
+                      width="1.3em"
+                      height="1.3em"
                     />
                   ) : null}
                   <p className="favorites__modal-container">

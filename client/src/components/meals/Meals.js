@@ -34,7 +34,7 @@ const Meal = () => {
       alert(error.msg.msg);
       dispatch(clearErrors());
     }
-  }, [error]);
+  }, [error, dispatch]);
 
   return (
     <div className="meal">

@@ -34,8 +34,8 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                   <SvgIcon
                     name="minus-circle"
                     color="#8d8479"
-                    width="2.2rem"
-                    height="2.2rem"
+                    width="2.2em"
+                    height="2.2em"
                   />
                 </button>
 
@@ -56,8 +56,8 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                     <SvgIcon
                       name="more-horizontal"
                       color="#fff"
-                      width="2.4rem"
-                      height="2.4rem"
+                      width="2.4em"
+                      height="2.4em"
                     />
                   </button>
                 </div>
@@ -75,8 +75,8 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                       <SvgIcon
                         name="triangle-right"
                         color="#999"
-                        width="1.3rem"
-                        height="1.3rem"
+                        width="1.3em"
+                        height="1.3em"
                       />{' '}
                       {ingredient}
                     </span>
@@ -88,8 +88,8 @@ const MealWeeklyPlannerItem = ({ day, index }) => {
                     <SvgIcon
                       name="tag"
                       color="#999"
-                      width="1.3rem"
-                      height="1.3rem"
+                      width="1.3em"
+                      height="1.3em"
                     />
                   ) : null}
                   <p className="planner__tags-container">

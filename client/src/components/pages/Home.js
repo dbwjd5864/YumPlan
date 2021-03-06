@@ -12,8 +12,8 @@ const Home = () => {
         <SvgIcon
           name="corner-right-down"
           color="#8d8479"
-          width="3rem"
-          height="2.5rem"
+          width="3em"
+          height="2.5em"
         />
       </div>
       <div className="home__door">

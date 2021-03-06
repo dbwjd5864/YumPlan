@@ -19,17 +19,12 @@ const Footer = () => {
             <SvgIcon
               name="github"
               color="#8d8479"
-              width="1.8rem"
-              height="1.8rem"
+              width="1.8em"
+              height="1.8em"
             />
           </a>
           <a href="mailto:yjchoung10@gmail.com">
-            <SvgIcon
-              name="mail"
-              color="#8d8479"
-              width="1.8rem"
-              height="1.8rem"
-            />
+            <SvgIcon name="mail" color="#8d8479" width="1.8em" height="1.8em" />
             yjchoung10@gmail.com
           </a>
         </div>

@@ -42,15 +42,15 @@ const MealItem = ({ meal }) => {
             <SvgIcon
               name="heart-outlined"
               color="#eb9f9f"
-              width="2.1rem"
-              height="2.1rem"
+              width="2.1em"
+              height="2.1em"
             />
           ) : (
             <SvgIcon
               name="heart"
               color="#eb9f9f"
-              width="2.1rem"
-              height="2.1rem"
+              width="2.1em"
+              height="2.1em"
             />
           )}
         </button>
@@ -76,8 +76,8 @@ const MealItem = ({ meal }) => {
           <SvgIcon
             name="squared-plus"
             color="#fff"
-            width="2.2rem"
-            height="2.2rem"
+            width="2.2em"
+            height="2.2em"
           />
         </button>
       </div>
@@ -92,8 +92,8 @@ const MealItem = ({ meal }) => {
             <SvgIcon
               name="triangle-right"
               color="#999"
-              width="1.3rem"
-              height="1.3rem"
+              width="1.3em"
+              height="1.3em"
             />{' '}
             {ingredient}
           </span>
@@ -101,7 +101,7 @@ const MealItem = ({ meal }) => {
       </div>
       <div className="meal__item-tags">
         {tags.length > 0 ? (
-          <SvgIcon name="tag" color="#999" width="1.3rem" height="1.3rem" />
+          <SvgIcon name="tag" color="#999" width="1.3em" height="1.3em" />
         ) : null}
         <p className="meal__tags-container">
           {tags.map((tag, index) => (
