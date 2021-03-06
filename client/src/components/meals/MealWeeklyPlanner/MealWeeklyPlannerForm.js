@@ -260,7 +260,7 @@ const MealWeeklyPlannerForm = ({ week }) => {
             className="form__button"
           />
         </form>
-        {error && (
+        {error && error !== 'Request failed with status code 401' && (
           <div className="form__error errorWrapper">
             <p className="error"> {error}</p>
           </div>

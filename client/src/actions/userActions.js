@@ -11,8 +11,6 @@ export const isLoggedIn = () => async (dispatch) => {
       dispatch({ type: 'AUTH_FAIL' });
     }
   } catch (err) {
-    console.log(err.message);
-
     dispatch({ type: 'AUTH_FAIL' });
   }
 };
@@ -23,8 +21,6 @@ export const signup = (newUser) => async (dispatch) => {
 
     dispatch({ type: 'REGISTER_SUCCESS', payload: data });
   } catch (err) {
-    console.log(err);
-
     dispatch(
       returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
     );
@@ -38,8 +34,6 @@ export const login = (user) => async (dispatch) => {
 
     dispatch({ type: 'LOGIN_SUCCESS', payload: data });
   } catch (err) {
-    console.log(err);
-
     dispatch(
       returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
     );

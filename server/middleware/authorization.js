@@ -15,9 +15,7 @@ module.exports = async function (req, res, next) {
 
   //Check if not token
   if (!token) {
-    return res
-      .status(401)
-      .json({ status: 'fail', msg: 'No token, authorization denied' });
+    return res.status(401).json({ status: 'fail', msg: 'Please Log In first' });
   }
 
   try {

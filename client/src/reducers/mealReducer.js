@@ -76,7 +76,6 @@ const mealReducer = (state = initialState, action) => {
     case 'UPDATE_MEALPLAN_FAIL':
     case 'DELETE_MEALPLAN_FAIL':
     case 'UPDATE_LIKECOUNT_FAIL':
-    case 'ADD_FAVORITE_FAIL':
     case 'UPDATE_FAVORITE_FAIL':
       return {
         ...state,

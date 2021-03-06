@@ -1,4 +1,5 @@
 import * as api from '../api/index';
+import { returnErrors } from './errorActions';
 
 export const getAllMeals = () => async (dispatch) => {
   try {
@@ -57,7 +58,7 @@ export const createMealPlan = (mealPlan) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'CREATE_MEALPLAN_FAIL',
-      payload: `Created FAILED (Name and Ingredients are required) `,
+      payload: `Create FAILED (Name and Ingredients are required) `,
     });
   }
 };
@@ -107,10 +108,9 @@ export const addFavorite = (mealId) => async (dispatch) => {
 
     dispatch({ type: 'ADD_FAVORITE_SUCCESS', payload: data });
   } catch (err) {
-    dispatch({
-      type: 'ADD_FAVORITE_FAIL',
-      payload: err.message,
-    });
+    dispatch(
+      returnErrors(err.response.data, err.response.status, 'ADD_FAVORITE_FAIL')
+    );
   }
 };
 

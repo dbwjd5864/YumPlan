@@ -34,7 +34,7 @@ const MealFilter = ({ filtered }) => {
         onChange={filterMeal}
       />
       <button className="meal__search-btn">
-        <SvgIcon name="search" color="#fff" width="2rem" height="1.7rem" />
+        <SvgIcon name="search" color="#fff" width="1.8em" height="1.5em" />
       </button>
     </form>
   );

@@ -6,12 +6,15 @@ import Loader from '../layout/Loader';
 
 import {
   getAllMeals,
-  getAllFavorites,
   getMealPlanner,
+  getAllFavorites,
   setWeekly,
 } from '../../actions/mealActions';
 
+import { clearErrors } from '../../actions/errorActions';
+
 const Meal = () => {
+  const error = useSelector((state) => state.errors);
   const { meals, filtered } = useSelector((state) => state.meals);
   const { isAuthenticated } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -25,6 +28,13 @@ const Meal = () => {
     dispatch(getMealPlanner());
     dispatch(getAllFavorites());
   }, [dispatch, isAuthenticated]);
+
+  useEffect(() => {
+    if (error.id === 'ADD_FAVORITE_FAIL') {
+      alert(error.msg.msg);
+      dispatch(clearErrors());
+    }
+  }, [error]);
 
   return (
     <div className="meal">

@@ -323,10 +323,17 @@ exports.getFavorites = async (req, res) => {
 exports.addFavorite = async (req, res) => {
   try {
     const meal = await Meal.findById(req.params.mealId);
+    const favList = await User.findOne({ favorites: req.params.mealId });
 
     if (!meal) {
       return res.status(404).json({
         msg: 'No Meal found with that ID',
+      });
+    }
+    if (favList) {
+      return res.status(400).json({
+        status: 'fail',
+        msg: 'Already added',
       });
     }
 
