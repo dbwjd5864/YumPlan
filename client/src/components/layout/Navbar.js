@@ -84,6 +84,9 @@ const Navbar = () => {
             <li className="nav__meal-item">
               <Link to="/meal/favorites">Favorite</Link>
             </li>
+            <li className="nav__meal-item">
+              <Link to="/about">About</Link>
+            </li>
           </ul>
         ) : (
           <h2 className="nav__background heading-1">Make Your Meal Plan</h2>

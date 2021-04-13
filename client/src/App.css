@@ -1009,6 +1009,7 @@ input[type='file']::before {
   align-items: center;
   top: 50%;
   left: 50%;
+  transform: translateX(-50%);
   font-size: 1.9rem;
   margin-right: 1rem;
   color: #fff;
@@ -1151,6 +1152,37 @@ input[type='file']::before {
   width: 12rem;
 }
 
+/* About Page */
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+.about > p {
+  margin-top: 5rem;
+}
+
+.about__description {
+  font-size: 2rem;
+  width: 80%;
+  line-height: 3rem;
+  padding-left: 1.3rem;
+  border-left: 5px solid var(--text-color);
+}
+
+.about__description > span {
+  display: block;
+}
+
+.about__version {
+  margin-right: 5rem;
+  font-size: 1.5rem;
+  align-self: flex-end;
+}
+
 /* Media Query */
 
 /* Big Desktop */
@@ -1192,6 +1224,10 @@ input[type='file']::before {
 
   .meal__search-container {
     width: 100%;
+  }
+
+  .meal__search-btn {
+    font-size: 1.3rem;
   }
 }
 
